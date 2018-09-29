@@ -1,0 +1,8 @@
+﻿<Application
+    x:Class="DBSS_Agua.UWP.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DBSS_Agua.UWP"
+    RequestedTheme="Light">
+
+</Application>
