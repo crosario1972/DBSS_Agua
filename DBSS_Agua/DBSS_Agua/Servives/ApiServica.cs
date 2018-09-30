@@ -4,6 +4,7 @@ namespace DBSS_Agua.Servives
 {
     using DBSS_Agua.Common.Models;
     using Newtonsoft.Json;
+    using Plugin.Connectivity;
     using System;
     using System.Collections.Generic;
     using System.Net.Http;
@@ -12,38 +13,26 @@ namespace DBSS_Agua.Servives
 
     public class ApiService
     {
-        readonly int Contador;
 
-        //public async Task<Response> CheckConnection()
-        //{
+        public async Task<Response> CheckConnection()
+        {
 
-        //    if (!CrossConnectivity.Current.IsConnected)
-        //    {
-        //        return new Response
-        //        {
-        //            IsSuccess = false,
-        //            Message = "Please turn on your internet settings.",
-        //        };
-        //    }
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = "Please turn on your internet settings.",
+                };
+            }
 
-        //    var isReachable = await CrossConnectivity.Current.IsRemoteReachable("crosario.ddns.net");
-        //    if (!isReachable)
-        //    {
-        //        return new Response
-        //        {
-        //            //IsSuccess = false,
-        //            //Message = "Check 'crosario.ddns.net' settings.",
-        //            IsSuccess = true,
-        //            Message = "Ok",
-        //        };
-        //    }
+            return new Response
+            {
+                IsSuccess = true,
+                Message = "Ok",
+            };
+        }
 
-        //    return new Response
-        //    {
-        //        IsSuccess = true,
-        //        Message = "Ok",
-        //    };
-        //}
 
         //public async Task<Response> Login(string usuario, string password)
         //{

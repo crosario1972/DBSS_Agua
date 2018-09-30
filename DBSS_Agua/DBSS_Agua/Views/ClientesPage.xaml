@@ -2,18 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DBSS_Agua.Views.ClientesPage"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="Listado de Clientes">
     <ContentPage.Content>
         <StackLayout 
             BindingContext="{Binding Clientes}"
             Padding="5">
             <ListView 
-                
                 HasUnevenRows="True"
                 IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsRefreshing}"
                 ItemsSource="{Binding ClientesList}"
-                
-                SeparatorVisibility="Default">
+                SeparatorVisibility="Default"
+                SeparatorColor="Black"
+                RefreshCommand="{Binding RefreshCommand}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -37,7 +39,7 @@
                                     Grid.Column="1"
                                     FontAttributes="Bold"
                                     TextColor="Black"
-                                    Text="{Binding MontoMensual, StringFormat=' {0:C0}'}"
+                                    Text="{Binding Suspendido}"
                                     VerticalOptions="End">
                                 </Label>
                             </Grid>

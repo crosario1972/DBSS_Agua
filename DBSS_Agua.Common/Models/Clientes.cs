@@ -20,12 +20,18 @@ namespace DBSS_Agua.Common.Models
         public string Comentario { get; set; }
         public string ServicioTipo { get; set; }
         public string UsuarioNombre { get; set; }
-        public bool ServicioSuspendido { get; set; }
         public Nullable<System.DateTime> ServicioSuspendidoFecha { get; set; }
         public decimal MontoMensual { get; set; }
         public override string ToString()
         {
             return this.NombreInquilino;
+        }
+
+        public bool ServicioSuspendido { get; set; }
+
+        public string Suspendido
+        {
+            get { return ServicioSuspendido == true ? "Si" : "No"; }
         }
 
     }
