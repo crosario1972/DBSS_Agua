@@ -1,6 +1,7 @@
-﻿using System;
+﻿using DBSS_Agua.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace DBSS_Agua
@@ -11,7 +12,7 @@ namespace DBSS_Agua
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new ClientesPage();
         }
 
         protected override void OnStart()

@@ -1,8 +1,294 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DBSS_Agua.App">
+             x:Class="DBSS_Agua.App"
+             xmlns:infra="clr-namespace:DBSS_Agua.Infrastructure">
     <Application.Resources>
+        <ResourceDictionary>
 
+            <!-- Locator -->
+
+            <infra:InstanceLocator x:Key="Locator"/>
+
+
+            <!-- General colors -->
+
+            <Color x:Key="MainColor">#1CA5B8</Color>
+            <!--Azul claro-->
+            <Color x:Key="BackgroundColor">#D9D9D9</Color>
+            <!--Gris claro-->
+            <Color x:Key="MenuColor">#FFFFFF</Color>
+            <!--Blanco-->
+            <Color x:Key="FontColor1">#243752</Color>
+            <!--Azul marino-->
+            <Color x:Key="FontColor2">#000000</Color>
+            <!--Negro-->
+            <Color x:Key="AccentColor1">#FF5521</Color>
+            <!--Mamei-->
+            <Color x:Key="AccentColor2">#4DB84B</Color>
+            <!--Verde claro-->
+            <Color x:Key="ButtomFontColor1">#FF404C</Color>
+            <!--Rojo-->
+            <Color x:Key="ButtomFontColor2">#ffffff</Color>
+            <!--Blanco-->
+            <Color x:Key="ButtomBackColor">#000000</Color>
+            <!--Negro-->
+            <Color x:Key="TextBackgroundColor">#A1A1A1</Color>
+            <!--Gris-->
+            <Color x:Key="LoginBackColor">#292923</Color>
+            <!--Negro claro-->
+
+            <!-- Buttom colors -->
+            <Color x:Key="ButtomEditBorderColor">#cdbe32</Color>
+            <Color x:Key="ButtomUpdateBorderColor">#4bbcf4</Color>
+            <Color x:Key="ButtomDeleteBorderColor">#f8756c</Color>
+            <Color x:Key="ButtomNuevoBorderColor">#20B2AA</Color>
+            <Color x:Key="EntryFontoColor">#39f200</Color>
+
+            <!-- Logo colors -->
+            <Color x:Key="DominicanColor">#FD6307</Color>
+            <Color x:Key="BusinessColor">#B3B2B4</Color>
+            <Color x:Key="SoftwareColor">#0BCA0E</Color>
+            <Color x:Key="SolutionColor">#81B6F5</Color>
+
+
+            <!--  Data Tamplate Usuarios-->
+
+            <DataTemplate x:Key="UsuarioItemTemplate">
+                <ViewCell>
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding UsuarioDetailCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20">
+                            </RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="125"/>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"
+                               FontAttributes="Bold"
+                               Text="{Binding NombreCompleto}"/>
+                        <Label Grid.Column="1"
+                               Text="{Binding Nombre}"/>
+                        <Label Grid.Column="2" 
+                               Text="{Binding Clave}"/>
+                        <Label Grid.Column="3" 
+                               Text="{Binding Activo}"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+
+            <!--  Data Tamplate Clientes-->
+
+            <DataTemplate x:Key="ClientesItemTemplate">
+                <ViewCell>
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ClienteDetailCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="27">
+                            </RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="275"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"
+                               FontSize="18"
+                               FontAttributes="Italic"
+                               TextColor="{StaticResource FontColor1}"
+                               Text="{Binding Nombre}"
+                               VerticalOptions="CenterAndExpand"/>
+                        <Label Grid.Column="1" 
+                               Text="{Binding ClienteTipo}"
+                               VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+
+            <!--  Data Tamplate Cliente CxC-->
+
+            <DataTemplate x:Key="ClientesCxC_ItemTemplate">
+                <ViewCell>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25">
+                            </RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="125*"/>
+                            <ColumnDefinition Width="75*"/>
+                            <ColumnDefinition Width="75*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource ButtomBackColor}"
+                               Text="{Binding TransaccionFecha, StringFormat='\{0:dd-MMM-yyyy}'}" 
+                               VerticalOptions="CenterAndExpand"/>
+                        <Label Grid.Column="1"
+                               TextColor="{StaticResource ButtomFontColor1}"
+                               Text="{Binding Debito, StringFormat=' {0:C0}'}"
+                               VerticalOptions="CenterAndExpand"/>
+                        <Label Grid.Column="2" 
+                               TextColor="{StaticResource FontColor1}"
+                               Text="{Binding Credito, StringFormat=' {0:C0}'}"
+                               VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+
+            <!--  Data Tamplate Articulos-->
+
+            <DataTemplate x:Key="ArticulosItemTemplate">
+                <ViewCell>
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ClienteDetailCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30">
+                            </RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="240"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"
+                               FontSize="10"
+                               FontAttributes="Bold"
+                               Text="{Binding Descripccion}"/>
+                        <Label Grid.Column="1"
+                               FontSize="10"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource FontColor1}"
+                               Text="{Binding InventarioEntero}"/>
+                        <Label Grid.Column="2"
+                               FontSize="10"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource FontColor2}"
+                               Text="{Binding InventarioUnidad}"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+
+            <!--  Data Tamplate Empresa-->
+
+            <DataTemplate x:Key="EmpresaItemTemplate">
+                <ViewCell>
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding EmpresaDetailCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40">
+                            </RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"
+                               FontAttributes="Bold"
+                               Text="{Binding Nombre}"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+
+            <!--  Data Tamplate Suplidores-->
+
+            <DataTemplate x:Key="SuplidoresItemTemplate">
+                <ViewCell>
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SuplidorDetailCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="27">
+                            </RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="275"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"
+                               FontSize="16"
+                               FontAttributes="Italic"
+                               TextColor="{StaticResource FontColor1}"
+                               Text="{Binding Nombre}"
+                               VerticalOptions="CenterAndExpand"/>
+                        <Label Grid.Column="1" 
+                               Text="{Binding SuplidorTipo}"
+                               VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+
+            <!--  Data Tamplate Suplidores CxP-->
+
+            <DataTemplate x:Key="SuplidoresCxP_ItemTemplate">
+                <ViewCell>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25">
+                            </RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="125*"/>
+                            <ColumnDefinition Width="75*"/>
+                            <ColumnDefinition Width="75*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource ButtomBackColor}"
+                               Text="{Binding TransaccionFecha, StringFormat='\{0:dd-MMM-yyyy}'}" 
+                               VerticalOptions="CenterAndExpand"/>
+                        <Label Grid.Column="1"
+                               TextColor="{StaticResource ButtomFontColor1}"
+                               Text="{Binding Debito, StringFormat=' {0:C0}'}"
+                               VerticalOptions="CenterAndExpand"/>
+                        <Label Grid.Column="2" 
+                               TextColor="{StaticResource FontColor1}"
+                               Text="{Binding Credito, StringFormat=' {0:C0}'}"
+                               VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+
+            <!--  Data Tamplate Empleados-->
+
+            <DataTemplate x:Key="EmpleadosItemTemplate">
+                <ViewCell>
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding EmpleadoDetailCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="27">
+                            </RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="275"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"
+                               FontSize="16"
+                               FontAttributes="Italic"
+                               TextColor="{StaticResource FontColor1}"
+                               Text="{Binding Nombre}"
+                               VerticalOptions="CenterAndExpand"/>
+                        <Label Grid.Column="1" 
+                               Text="{Binding RegistroActivo}"
+                               VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

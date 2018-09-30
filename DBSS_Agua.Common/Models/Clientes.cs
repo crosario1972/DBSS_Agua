@@ -23,6 +23,10 @@ namespace DBSS_Agua.Common.Models
         public bool ServicioSuspendido { get; set; }
         public Nullable<System.DateTime> ServicioSuspendidoFecha { get; set; }
         public decimal MontoMensual { get; set; }
+        public override string ToString()
+        {
+            return this.NombreInquilino;
+        }
 
     }
 }
