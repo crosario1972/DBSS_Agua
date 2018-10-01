@@ -8,6 +8,8 @@ namespace DBSS_Agua.Servives
     using System;
     using System.Collections.Generic;
     using System.Net.Http;
+    using System.Net.NetworkInformation;
+    using System.Net.Sockets;
     using System.Text;
     using System.Threading.Tasks;
 
@@ -26,11 +28,23 @@ namespace DBSS_Agua.Servives
                 };
             }
 
+
+            var isReachable = await CrossConnectivity.Current.IsRemoteReachable("http://crosario.ddns.net:8006", 5000, 5000);
+            if (!isReachable)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = "No se pudo conectar el servidor",
+                };
+            }
+
             return new Response
             {
                 IsSuccess = true,
                 Message = "Ok",
             };
+
         }
 
 

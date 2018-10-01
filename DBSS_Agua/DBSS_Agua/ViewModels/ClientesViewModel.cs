@@ -38,30 +38,48 @@ namespace DBSS_Agua.ViewModels
         private async void LoadClientes()
         {
             this.IsRefreshing = true;
-
-            // var connection = await this.apiService.CheckConnection();
+            //========================Validacion de la conexion al internet y el servidor===============================================================
             var connection = await this.apiService.CheckConnection();
 
             if (!connection.IsSuccess)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", connection.Message, "Accept");
-                return;
+                this.IsRefreshing = false;
+
+                if (connection.Message == "No se pudo conectar el servidor")
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", connection.Message, "Aceptar");
+                    System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
+                }
+                else
+                {
+                    Device.BeginInvokeOnMainThread(async () => 
+                    { await Application.Current.MainPage.DisplayAlert("Error", "No hay conexión al internet", "Ok"); });
+                    CerrarPrograma();
+                    return;
+                }
             }
+            //========================fin de la conexion al internet y el servidor======================================================================
 
-
-
-            //  var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.GetList<Clientes>("http://crosario.ddns.net:8006", "/api", "/Clientes");
             if (!response.IsSuccess)
             {
                 this.IsRefreshing = false;
-                await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
+                await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Aceptar");
                 return;
             }
 
             var list = (List<Clientes>)response.Result;
             this.ClientesList = new ObservableCollection<Clientes>(list);
             this.IsRefreshing = false;
+        }
+
+        private void CerrarPrograma()
+        {
+            Device.StartTimer(TimeSpan.FromSeconds(5), () =>
+            {
+                System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
+                return true; 
+            });
         }
 
         public ICommand RefreshCommand { get { return new RelayCommand(LoadClientes); } }
