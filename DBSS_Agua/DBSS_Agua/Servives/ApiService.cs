@@ -3,6 +3,7 @@
 namespace DBSS_Agua.Servives
 {
     using DBSS_Agua.Common.Models;
+    using DBSS_Agua.Helpers;
     using Newtonsoft.Json;
     using Plugin.Connectivity;
     using System;
@@ -24,7 +25,7 @@ namespace DBSS_Agua.Servives
                 return new Response
                 {
                     IsSuccess = false,
-                    Message = "Please turn on your internet settings.",
+                    Message = Languages.TurnOnInternet,
                 };
             }
 
@@ -35,7 +36,8 @@ namespace DBSS_Agua.Servives
                 return new Response
                 {
                     IsSuccess = false,
-                    Message = "No se pudo conectar el servidor",
+                    Result = "No se pudo conectar el servidor",
+                    Message = Languages.NoServer,
                 };
             }
 

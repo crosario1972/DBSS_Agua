@@ -8,7 +8,6 @@ namespace DBSS_Agua
 {
     public partial class App : Application
     {
-        //public const string BaseAdd = "http://crosario.ddns.net:8006";
 
         public App()
         {

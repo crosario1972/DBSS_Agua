@@ -11,7 +11,7 @@
             <infra:InstanceLocator x:Key="Locator"/>
 
             <!-- Parameters -->
-            <!--<x:String x:Key="UrlAPI">http://crosario.ddns.net:8006</x:String>-->
+            <x:String x:Key="UrlAPI">http://crosario.ddns.net:8006</x:String>
 
 
             <!-- General colors -->

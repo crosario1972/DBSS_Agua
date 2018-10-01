@@ -7,6 +7,7 @@ namespace DBSS_Agua.ViewModels
     using System.Collections.ObjectModel;
     using System.Windows.Input;
     using DBSS_Agua.Common.Models;
+    using DBSS_Agua.Helpers;
     using DBSS_Agua.Servives;
     using GalaSoft.MvvmLight.Command;
     using Xamarin.Forms;
@@ -45,26 +46,30 @@ namespace DBSS_Agua.ViewModels
             {
                 this.IsRefreshing = false;
 
-                if (connection.Message == "No se pudo conectar el servidor")
+                // "No se pudo conectar el servidor")
+                if (connection.Result.ToString() == "No se pudo conectar el servidor")
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", connection.Message, "Aceptar");
+                    await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.NoServer, Languages.Accept);
                     System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
                 }
                 else
                 {
                     Device.BeginInvokeOnMainThread(async () => 
-                    { await Application.Current.MainPage.DisplayAlert("Error", "No hay conexión al internet", "Ok"); });
+                    { await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.TurnOnInternet, Languages.Accept); });
                     CerrarPrograma();
                     return;
                 }
             }
             //========================fin de la conexion al internet y el servidor======================================================================
 
-            var response = await this.apiService.GetList<Clientes>("http://crosario.ddns.net:8006", "/api", "/Clientes");
+           string url = Application.Current.Resources["UrlAPI"].ToString();
+
+            var response = await this.apiService.GetList<Clientes>(url, "/api", "/Clientes");
             if (!response.IsSuccess)
             {
                 this.IsRefreshing = false;
-                await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Aceptar");
+                //await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Aceptar");
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.NoServer, Languages.Accept);
                 return;
             }
 
