@@ -5,6 +5,6 @@ namespace DBSS_Agua.Backend.Models
 
     public class LocalDataContext: DataContext
     {
-        public System.Data.Entity.DbSet<DBSS_Agua.Common.Models.Clientes> Clientes { get; set; }
+        public new System.Data.Entity.DbSet<DBSS_Agua.Common.Models.Clientes> Clientes { get; set; }
     }
 }

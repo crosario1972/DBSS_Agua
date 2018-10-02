@@ -7,5 +7,6 @@ namespace DBSS_Agua.Interfaces
     {
         CultureInfo GetCurrentCultureInfo();
         void SetLocale(CultureInfo ci);
+        
     }
 }

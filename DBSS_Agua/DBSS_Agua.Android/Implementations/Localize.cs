@@ -24,6 +24,7 @@ namespace DBSS_Agua.Droid.Implementations
             try
             {
                 ci = new System.Globalization.CultureInfo(netLanguage);
+                
             }
             catch (CultureNotFoundException e1)
             {
@@ -69,7 +70,10 @@ namespace DBSS_Agua.Droid.Implementations
                     // add more application-specific cases here (if required)
                     // ONLY use cultures that have been tested and known to work
             }
+
             return netLanguage;
+            
+
         }
 
         string ToDotnetFallbackLanguage(PlatformCulture platCulture)

@@ -1,4 +1,5 @@
 ﻿using DBSS_Agua.Views;
+using System.Globalization;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,11 +9,9 @@ namespace DBSS_Agua
 {
     public partial class App : Application
     {
-
         public App()
         {
             InitializeComponent();
-
             MainPage = new NavigationPage(new ClientesPage());
         }
 

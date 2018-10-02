@@ -12,6 +12,7 @@ namespace DBSS_Agua.Helpers
             var ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
             Resource.Culture = ci;
             DependencyService.Get<ILocalize>().SetLocale(ci);
+
         }
 
         public static string Accept
