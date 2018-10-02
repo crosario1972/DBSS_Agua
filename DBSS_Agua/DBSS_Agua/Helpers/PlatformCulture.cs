@@ -1,12 +1,15 @@
 ﻿namespace DBSS_Agua.Helpers
 {
     using System;
+
     public class PlatformCulture
     {
         public PlatformCulture(string platformCultureString)
         {
-            if (String.IsNullOrEmpty(platformCultureString))
+            if (string.IsNullOrEmpty(platformCultureString))
+            {
                 throw new ArgumentException("Expected culture identifier", "platformCultureString"); // in C# 6 use nameof(platformCultureString)
+            }
 
             PlatformString = platformCultureString.Replace("_", "-"); // .NET expects dash, not underscore
             var dashIndex = PlatformString.IndexOf("-", StringComparison.Ordinal);
@@ -22,9 +25,11 @@
                 LocaleCode = "";
             }
         }
+
         public string PlatformString { get; private set; }
         public string LanguageCode { get; private set; }
         public string LocaleCode { get; private set; }
+
         public override string ToString()
         {
             return PlatformString;

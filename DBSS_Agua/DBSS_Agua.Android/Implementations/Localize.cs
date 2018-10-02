@@ -1,13 +1,16 @@
 ﻿using Xamarin.Forms;
 
-[assembly: Dependency(typeof(DBSS_Agua.Droid.Localize))]
+
+[assembly: Dependency(typeof(DBSS_Agua.Droid.Implementations.Localize))]
+
 
 namespace DBSS_Agua.Droid.Implementations
 {
     using System.Globalization;
     using System.Threading;
+    using DBSS_Agua.Interfaces;
     using Helpers;
-    using Interfaces;
+    
 
     public class Localize : ILocalize
     {

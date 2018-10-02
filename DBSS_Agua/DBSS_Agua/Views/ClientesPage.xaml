@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DBSS_Agua.Views.ClientesPage"
+             xmlns:i18n="clr-namespace:DBSS_Agua.Helpers"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="Listado de Clientes">
+             Title="{i18n:Translate Clients}">
     <ContentPage.Content>
         <StackLayout 
             BindingContext="{Binding Clientes}"

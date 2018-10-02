@@ -129,7 +129,7 @@
   <data name="NoServer" xml:space="preserve">
     <value>Can not access the server.</value>
   </data>
-  <data name="Products" xml:space="preserve">
-    <value>Products</value>
+  <data name="Clients" xml:space="preserve">
+    <value>Clients</value>
   </data>
 </root>

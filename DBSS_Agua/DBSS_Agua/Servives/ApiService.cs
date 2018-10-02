@@ -13,6 +13,7 @@ namespace DBSS_Agua.Servives
     using System.Net.Sockets;
     using System.Text;
     using System.Threading.Tasks;
+    using Xamarin.Forms;
 
     public class ApiService
     {
@@ -28,7 +29,6 @@ namespace DBSS_Agua.Servives
                     Message = Languages.TurnOnInternet,
                 };
             }
-
 
             var isReachable = await CrossConnectivity.Current.IsRemoteReachable("http://crosario.ddns.net:8006", 5000, 5000);
             if (!isReachable)

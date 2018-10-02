@@ -62,9 +62,12 @@ namespace DBSS_Agua.ViewModels
             }
             //========================fin de la conexion al internet y el servidor======================================================================
 
-           string url = Application.Current.Resources["UrlAPI"].ToString();
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlClientesController"].ToString();
 
-            var response = await this.apiService.GetList<Clientes>(url, "/api", "/Clientes");
+
+            var response = await this.apiService.GetList<Clientes>(url,prefix,controller);
             if (!response.IsSuccess)
             {
                 this.IsRefreshing = false;

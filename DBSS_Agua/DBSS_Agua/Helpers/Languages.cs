@@ -1,19 +1,17 @@
-﻿using DBSS_Agua.Interfaces;
-using DBSS_Agua.Resorces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
-
+﻿
 namespace DBSS_Agua.Helpers
 {
+    using Xamarin.Forms;
+    using Interfaces;
+    using DBSS_Agua.Resources;
+
     public static class Languages
     {
         static Languages()
         {
-            var ci = DependencyService.Get<ILacalize>().GetCurrentCultureInfo();
+            var ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
             Resource.Culture = ci;
-            DependencyService.Get<ILacalize>().SetLocale(ci);
+            DependencyService.Get<ILocalize>().SetLocale(ci);
         }
 
         public static string Accept
@@ -31,9 +29,9 @@ namespace DBSS_Agua.Helpers
             get { return Resource.NoServer; }
         }
 
-        public static string Products
+        public static string Clients
         {
-            get { return Resource.Products; }
+            get { return Resource.Clients; }
         }
 
         public static string TurnOnInternet
