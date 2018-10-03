@@ -42,7 +42,7 @@
                                 </Image>
                                 <Grid Grid.Column="1">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
@@ -57,7 +57,7 @@
                                         Grid.ColumnSpan="2"
                                         FontAttributes="Bold"
                                         TextColor="DarkBlue"
-                                        FontSize="18"
+                                        FontSize="16"
                                         Text="{Binding NombreInquilino}"
                                         VerticalOptions="CenterAndExpand"
                                         HorizontalOptions="CenterAndExpand">
@@ -67,7 +67,7 @@
                                         Grid.Column="0"
                                         FontAttributes="Bold"
                                         TextColor="Black"
-                                        Text="Servicio Suspendido :"
+                                        Text="Suspendido :"
                                         VerticalOptions="Start"
                                         HorizontalOptions="Start">
                                     </Label>
@@ -85,7 +85,7 @@
                                         Grid.Column="0"
                                         FontAttributes="Bold"
                                         TextColor="Black"
-                                        Text="Servicio cuota :"
+                                        Text="Cuota :"
                                         VerticalOptions="Start"
                                         HorizontalOptions="Start">
                                     </Label>
@@ -94,7 +94,7 @@
                                         Grid.Column="1"
                                         FontAttributes="Bold"
                                         TextColor="Blue"
-                                        Text="{Binding MontoMensual, StringFormat='RD {0:C2}'}"
+                                        Text="{Binding MontoMensual, StringFormat=' {0:C2}'}"
                                         VerticalOptions="Start"
                                         HorizontalOptions="Center">
                                     </Label>
