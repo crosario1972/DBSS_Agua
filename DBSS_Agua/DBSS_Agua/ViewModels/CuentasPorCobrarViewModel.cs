@@ -77,7 +77,7 @@ namespace DBSS_Agua.ViewModels
         {
 
             this.LoadCuentasPorCobrar();
-         //   this.Nombre = App.NombreActual;
+            //   this.Nombre = App.NombreActual;
         }
 
 
@@ -145,3 +145,4 @@ namespace DBSS_Agua.ViewModels
 
         #endregion
     }
+}
