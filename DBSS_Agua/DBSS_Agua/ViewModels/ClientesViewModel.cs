@@ -15,7 +15,8 @@ namespace DBSS_Agua.ViewModels
 
     public class ClientesViewModel: BaseViewModel
     {
-        private ObservableCollection<Clientes> clientesList;
+        public List<Clientes> MyClientes { get; set; }
+        private ObservableCollection<ClienteItemViewModel> clientesList;
         private ApiService apiService;
         private bool isRefreshing;
 
@@ -25,7 +26,7 @@ namespace DBSS_Agua.ViewModels
             set { this.SetValue(ref this.isRefreshing, value); }
         }
 
-        public ObservableCollection<Clientes> ClientesList
+        public ObservableCollection<ClienteItemViewModel> ClientesList
         {
             get { return this.clientesList; }
             set { this.SetValue(ref this.clientesList, value); }
@@ -76,9 +77,36 @@ namespace DBSS_Agua.ViewModels
                 return;
             }
 
-            var list = (List<Clientes>)response.Result;
-            this.ClientesList = new ObservableCollection<Clientes>(list.OrderBy(x=>x.NombreInquilino).Where(c => c.RegistroActivo == true));
+            this.MyClientes = (List<Clientes>)response.Result;
+            this.RefreshList();
             this.IsRefreshing = false;
+        }
+
+        public void RefreshList()
+        {
+            var MyListClienteItemViewModel = MyClientes.Select(p => new ClienteItemViewModel
+            {
+                Cedula = p.Cedula,
+                RegistroActivo = p.RegistroActivo,
+                CasaPropia = p.CasaPropia,
+                ClientesID = p.ClientesID,
+                Comentario = p.Comentario,
+                Direccion = p.Direccion,
+                FechaCreación = p.FechaCreación,
+                ImagePath = p.ImagePath,
+                MontoMensual = p.MontoMensual,
+                MontoPendienteMembrecia = p.MontoPendienteMembrecia,
+                NombreInquilino = p.NombreInquilino,
+                NombrePropietario = p.NombrePropietario,
+                ServicioSuspendido = p.ServicioSuspendido,
+                ServicioSuspendidoFecha = p.ServicioSuspendidoFecha,
+                ServicioTipo = p.ServicioTipo,
+                TelefonoCelular = p.TelefonoCelular,
+                TelefonoRecidencial = p.TelefonoRecidencial,
+                UsuarioNombre = p.UsuarioNombre,
+
+            });
+            this.ClientesList = new ObservableCollection<ClienteItemViewModel>(MyListClienteItemViewModel.OrderBy(c => c.NombreInquilino).Where(x => x.RegistroActivo == true));
         }
 
         private void CerrarPrograma()
