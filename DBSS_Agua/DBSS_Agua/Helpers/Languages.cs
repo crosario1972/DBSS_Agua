@@ -34,10 +34,20 @@ namespace DBSS_Agua.Helpers
         {
             get { return Resource.Clients; }
         }
-
+        //
         public static string TurnOnInternet
         {
             get { return Resource.TurnOnInternet; }
+        }
+
+        public static string Inactive
+        {
+            get { return Resource.Inactive; }
+        }
+
+        public static string Name
+        {
+            get { return Resource.Name; }
         }
     }
 }

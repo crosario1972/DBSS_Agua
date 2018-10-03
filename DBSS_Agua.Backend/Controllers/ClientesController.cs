@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
+﻿using DBSS_Agua.Backend.Helpers;
 using DBSS_Agua.Backend.Models;
 using DBSS_Agua.Common.Models;
+using System;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace DBSS_Agua.Backend.Controllers
 {
@@ -19,7 +17,7 @@ namespace DBSS_Agua.Backend.Controllers
         // GET: Clientes
         public async Task<ActionResult> Index()
         {
-            return View(await db.Clientes.ToListAsync());
+            return View(await db.Clientes.OrderBy(c => c.NombreInquilino).Where(x => x.RegistroActivo==true).ToListAsync());
         }
 
         // GET: Clientes/Details/5
@@ -43,21 +41,53 @@ namespace DBSS_Agua.Backend.Controllers
             return View();
         }
 
-        // POST: Clientes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ClientesID,RegistroActivo,NombreInquilino,NombrePropietario,CasaPropia,Cedula,Direccion,TelefonoRecidencial,TelefonoCelular,FechaCreación,Comentario,ServicioTipo,UsuarioNombre,ServicioSuspendido,ServicioSuspendidoFecha,MontoMensual")] Clientes clientes)
+        public async Task<ActionResult> Create(ClientesView view)
         {
             if (ModelState.IsValid)
             {
-                db.Clientes.Add(clientes);
+                var pic = string.Empty;
+                var folder = "~/Content/Clientes";
+
+                if (view.ImageFile != null)
+                {
+                    pic = FilesHelper.UploadPhoto(view.ImageFile, folder);
+                    pic = $"{folder}/{pic}";
+                }
+
+                var cliente = this.ToCliente(view , pic);
+
+                db.Clientes.Add(cliente);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(clientes);
+            return View(view);
+        }
+
+        private Clientes ToCliente(ClientesView view, string pic)
+        {
+            return new Clientes
+            {
+                MontoMensual = view.MontoMensual,
+                ImagePath = pic,
+                FechaCreación = view.FechaCreación,
+                CasaPropia = view.CasaPropia,
+                Cedula = view.Cedula,
+                ClientesID = view.ClientesID,
+                Comentario = view.Comentario,
+                Direccion = view.Direccion,
+                NombreInquilino = view.NombreInquilino,
+                NombrePropietario = view.NombrePropietario,
+                RegistroActivo = view.RegistroActivo,
+                ServicioSuspendido = view.ServicioSuspendido,
+                ServicioSuspendidoFecha = view.ServicioSuspendidoFecha,
+                ServicioTipo = view.ServicioTipo,
+                TelefonoCelular = view.TelefonoCelular,
+                TelefonoRecidencial = view.TelefonoRecidencial,
+                UsuarioNombre = view.UsuarioNombre
+            };
         }
 
         // GET: Clientes/Edit/5
@@ -72,23 +102,59 @@ namespace DBSS_Agua.Backend.Controllers
             {
                 return HttpNotFound();
             }
-            return View(clientes);
+            var view = this.ToView(clientes);
+            return View(view);
         }
 
-        // POST: Clientes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        private ClientesView ToView(Clientes clientes)
+        {
+            return new ClientesView
+            {
+                MontoMensual = clientes.MontoMensual,
+                ImagePath = clientes.ImagePath,
+                FechaCreación = clientes.FechaCreación,
+                CasaPropia = clientes.CasaPropia,
+                Cedula = clientes.Cedula,
+                ClientesID = clientes.ClientesID,
+                Comentario = clientes.Comentario,
+                Direccion = clientes.Direccion,
+                NombreInquilino = clientes.NombreInquilino,
+                NombrePropietario = clientes.NombrePropietario,
+                RegistroActivo = clientes.RegistroActivo,
+                ServicioSuspendido = clientes.ServicioSuspendido,
+                ServicioSuspendidoFecha = clientes.ServicioSuspendidoFecha,
+                ServicioTipo = clientes.ServicioTipo,
+                TelefonoCelular = clientes.TelefonoCelular,
+                TelefonoRecidencial = clientes.TelefonoRecidencial,
+                UsuarioNombre = clientes.UsuarioNombre
+            };
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ClientesID,RegistroActivo,NombreInquilino,NombrePropietario,CasaPropia,Cedula,Direccion,TelefonoRecidencial,TelefonoCelular,FechaCreación,Comentario,ServicioTipo,UsuarioNombre,ServicioSuspendido,ServicioSuspendidoFecha,MontoMensual")] Clientes clientes)
+        public async Task<ActionResult> Edit(ClientesView view)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(clientes).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var pic = view.ImagePath;
+                    var folder = "~/Content/Clientes";
+
+                    if (view.ImageFile != null)
+                    {
+                        pic = FilesHelper.UploadPhoto(view.ImageFile, folder);
+                        pic = $"{folder}/{pic}";
+                    }
+
+                    var cliente = this.ToCliente(view, pic);
+
+                    this.db.Entry(cliente).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
             }
-            return View(clientes);
+            return View(view);
         }
 
         // GET: Clientes/Delete/5
@@ -98,20 +164,22 @@ namespace DBSS_Agua.Backend.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Clientes clientes = await db.Clientes.FindAsync(id);
+
+            var clientes = await db.Clientes.FindAsync(id);
+
             if (clientes == null)
             {
                 return HttpNotFound();
             }
+
             return View(clientes);
         }
 
-        // POST: Clientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Clientes clientes = await db.Clientes.FindAsync(id);
+            var clientes = await db.Clientes.FindAsync(id);
             db.Clientes.Remove(clientes);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

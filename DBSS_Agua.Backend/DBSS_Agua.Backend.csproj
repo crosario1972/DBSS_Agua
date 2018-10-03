@@ -201,8 +201,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\FilesHelper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ClientesView.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LocalDataContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -214,6 +216,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Clientes\Carlos Rosario.jpg" />
+    <Content Include="Content\Clientes\CarlosRosario.jpg" />
+    <Content Include="Content\Clientes\CarlosRosario_48.png" />
+    <Content Include="Content\Clientes\CarlosRosario_Software.png" />
+    <Content Include="Content\Clientes\Carlos_CreacionSoftwarePuntoDeVenta.jpg" />
+    <Content Include="Content\Clientes\ReynisiRosario_128.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

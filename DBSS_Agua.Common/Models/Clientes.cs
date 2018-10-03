@@ -28,10 +28,25 @@ namespace DBSS_Agua.Common.Models
         public decimal MontoMensual { get; set; }
         [Display(Name = "Image")]
         public string ImagePath { get; set; }
+        public Decimal MontoPendienteMembrecia { get; set; }
         public override string ToString()
         {
             return this.NombreInquilino;
         }
+
+        public string ImageFullPath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.ImagePath))
+                {
+                    return null;
+                }
+
+                return $"http://crosario.ddns.net:8005/{this.ImagePath.Substring(1)}";
+            }
+        }
+
 
 
         //public bool ServicioSuspendido { get; set; }

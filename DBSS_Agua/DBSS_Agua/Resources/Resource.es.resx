@@ -132,4 +132,10 @@
   <data name="Clients" xml:space="preserve">
     <value>Clientes</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inactivo</value>
+  </data>
 </root>

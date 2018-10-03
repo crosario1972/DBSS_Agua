@@ -11,6 +11,7 @@ namespace DBSS_Agua.ViewModels
     using DBSS_Agua.Servives;
     using GalaSoft.MvvmLight.Command;
     using Xamarin.Forms;
+    using System.Linq;
 
     public class ClientesViewModel: BaseViewModel
     {
@@ -71,13 +72,12 @@ namespace DBSS_Agua.ViewModels
             if (!response.IsSuccess)
             {
                 this.IsRefreshing = false;
-                //await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Aceptar");
                 await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.NoServer, Languages.Accept);
                 return;
             }
 
             var list = (List<Clientes>)response.Result;
-            this.ClientesList = new ObservableCollection<Clientes>(list);
+            this.ClientesList = new ObservableCollection<Clientes>(list.OrderBy(x=>x.NombreInquilino).Where(c => c.RegistroActivo == true));
             this.IsRefreshing = false;
         }
 

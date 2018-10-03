@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace DBSS_Agua.Domain.Models
 {
+    using DBSS_Agua.Common.Models;
+    using System.Data.Entity;
+
     public class DataContext: DbContext
     {
         public DataContext(): base("DefaultConnection")
         {
         }
+        public DbSet<Clientes> Clientes { get; set; }
 
-        public System.Data.Entity.DbSet<DBSS_Agua.Common.Models.Clientes> Clientes { get; set; }
     }
 }

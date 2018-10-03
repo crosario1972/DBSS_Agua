@@ -11,30 +11,8 @@
             Padding="10">
 
             <StackLayout x:Name="HeaderStackLayout" Orientation="Horizontal" BackgroundColor="{StaticResource FontColor2}">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30">
-                        </RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3.7*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label
-                        Grid.Column="0"
-                        FontAttributes="Bold"
-                        TextColor="{StaticResource AccentColor2}"
-                        Text=" Nombre"
-                        VerticalOptions="Center">
-                    </Label>
-                    <Label
-                        Grid.Column="1"
-                        FontAttributes="Bold"
-                        TextColor="{StaticResource AccentColor2}"
-                        Text="Suspendido"
-                        VerticalOptions="End">
-                    </Label>
-                </Grid>
+                <Label Text="{i18n:Translate Name}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" TextColor="{StaticResource AccentColor2}"/>
+                <Label Text="{i18n:Translate Inactive}  " HorizontalOptions="EndAndExpand" VerticalOptions="Center" TextColor="{StaticResource AccentColor2}"/>
             </StackLayout>
             <ListView 
                 HasUnevenRows="True"
@@ -48,26 +26,25 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="30">
-                                    </RowDefinition>
-                                </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Label 
+                                <Image
                                     Grid.Column="0"
+                                    WidthRequest="100"
+                                    HeightRequest="100"
+                                    Source="{Binding ImageFullPath}"
+                                    VerticalOptions="Center">
+                                    
+                                </Image>
+                                <Label 
+                                    Grid.Column="1"
                                     FontAttributes="Bold"
                                     TextColor="Black"
                                     Text="{Binding NombreInquilino}"
                                     VerticalOptions="Center">
                                 </Label>
-                                <Switch
-                                    Grid.Column="1"
-                                    IsToggled="{Binding ServicioSuspendido}"
-                                    HorizontalOptions="Center">
-                                </Switch>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
