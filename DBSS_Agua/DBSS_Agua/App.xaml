@@ -14,6 +14,7 @@
             <x:String x:Key="UrlAPI">http://crosario.ddns.net:8006</x:String>
             <x:String x:Key="UrlPrefix">/api</x:String>
             <x:String x:Key="UrlClientesController">/Clientes</x:String>
+            <x:String x:Key="UrlCxcController">/CuentasPorCobrar</x:String>
 
 
             <!-- General colors -->

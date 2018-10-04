@@ -28,7 +28,7 @@ namespace DBSS_Agua.Common.Models
         public decimal MontoMensual { get; set; }
         [Display(Name = "Image")]
         public string ImagePath { get; set; }
-        public Decimal MontoPendienteMembrecia { get; set; }
+        public Nullable <Decimal> MontoPendienteMembrecia { get; set; }
         public override string ToString()
         {
             return this.NombreInquilino;

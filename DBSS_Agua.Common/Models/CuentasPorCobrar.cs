@@ -9,19 +9,33 @@ namespace DBSS_Agua.Common.Models
 {
     public class CuentasPorCobrar
     {
-        [Key]
+        //[Key]
+        //public int CuentasPorCobrarID { get; set; }
+        //public int ClienteID { get; set; }
+        //[DataType(DataType.Date)]
+        //public Nullable<System.DateTime> FechaCreacion { get; set; }
+        //[DataType(DataType.Date)]
+        //public Nullable<System.DateTime> FechaDePago { get; set; }
+        //public string TransaccionReferencia { get; set; }
+        //public string Descripcion { get; set; }
+        //[DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
+        //public decimal Debito { get; set; }
+        //[DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
+        //public decimal Credito { get; set; }
+        //public string UsuarioNombre { get; set; }
+
         public int CuentasPorCobrarID { get; set; }
         public int ClienteID { get; set; }
-        [DataType(DataType.Date)]
         public Nullable<System.DateTime> FechaCreacion { get; set; }
-        [DataType(DataType.Date)]
         public Nullable<System.DateTime> FechaDePago { get; set; }
         public string TransaccionReferencia { get; set; }
         public string Descripcion { get; set; }
-        [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
-        public decimal Debito { get; set; }
-        [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
-        public decimal Credito { get; set; }
+        public Nullable<decimal> Debito { get; set; }
+        public Nullable<decimal> Credito { get; set; }
         public string UsuarioNombre { get; set; }
+        public override int GetHashCode()
+        {
+            return ClienteID;
+        }
     }
 }

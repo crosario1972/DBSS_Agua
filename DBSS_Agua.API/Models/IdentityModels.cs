@@ -29,5 +29,7 @@ namespace DBSS_Agua.API.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<DBSS_Agua.API.Models.CuentasPorCobrar> CuentasPorCobrars { get; set; }
     }
 }
