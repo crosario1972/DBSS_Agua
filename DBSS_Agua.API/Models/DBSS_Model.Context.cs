@@ -26,5 +26,6 @@ namespace DBSS_Agua.API.Models
         }
     
         public virtual DbSet<CuentasPorCobrar> CuentasPorCobrars { get; set; }
+        public virtual DbSet<Cliente> Clientes { get; set; }
     }
 }

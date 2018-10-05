@@ -4,7 +4,30 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DB_AGUA_DEMOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DB_AGUA_DEMOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="ClientesID" />
+          </Key>
+          <Property Name="ClientesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegistroActivo" Type="bit" />
+          <Property Name="NombreInquilino" Type="nvarchar" MaxLength="25" />
+          <Property Name="NombrePropietario" Type="nvarchar" MaxLength="25" />
+          <Property Name="CasaPropia" Type="bit" />
+          <Property Name="Cedula" Type="nchar" MaxLength="13" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="255" />
+          <Property Name="TelefonoRecidencial" Type="nvarchar" MaxLength="15" />
+          <Property Name="TelefonoCelular" Type="nvarchar" MaxLength="15" />
+          <Property Name="FechaCreación" Type="datetime" />
+          <Property Name="Comentario" Type="nvarchar" MaxLength="255" />
+          <Property Name="ServicioTipo" Type="nvarchar" MaxLength="10" />
+          <Property Name="UsuarioNombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="ServicioSuspendido" Type="bit" />
+          <Property Name="ServicioSuspendidoFecha" Type="datetime" />
+          <Property Name="MontoMensual" Type="money" />
+          <Property Name="ImagePath" Type="nvarchar(max)" />
+          <Property Name="MontoPendienteMembrecia" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
         <EntityType Name="CuentasPorCobrar">
           <Key>
             <PropertyRef Name="CuentasPorCobrarID" />
@@ -19,13 +42,11 @@
           <Property Name="Credito" Type="money" />
           <Property Name="UsuarioNombre" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_AGUA_DEMO.dbo.Empresa' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityContainer Name="DB_AGUA_DEMOModelStoreContainer">
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CuentasPorCobrar" EntityType="Self.CuentasPorCobrar" Schema="dbo" store:Type="Tables" />
-          </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB_AGUA_DEMOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -45,7 +66,31 @@ warning 6002: The table/view 'DB_AGUA_DEMO.dbo.Empresa' does not have a primary 
         </EntityType>
         <EntityContainer Name="DB_AGUA_DEMOEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CuentasPorCobrars" EntityType="Self.CuentasPorCobrar" />
+          <EntitySet Name="Clientes" EntityType="DB_AGUA_DEMOModel.Cliente" />
           </EntityContainer>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ClientesID" />
+          </Key>
+          <Property Name="ClientesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegistroActivo" Type="Boolean" />
+          <Property Name="NombreInquilino" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="NombrePropietario" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="CasaPropia" Type="Boolean" />
+          <Property Name="Cedula" Type="String" MaxLength="13" FixedLength="true" Unicode="true" />
+          <Property Name="Direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TelefonoRecidencial" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="TelefonoCelular" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="FechaCreación" Type="DateTime" Precision="3" />
+          <Property Name="Comentario" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ServicioTipo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UsuarioNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ServicioSuspendido" Type="Boolean" />
+          <Property Name="ServicioSuspendidoFecha" Type="DateTime" Precision="3" />
+          <Property Name="MontoMensual" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MontoPendienteMembrecia" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -64,6 +109,30 @@ warning 6002: The table/view 'DB_AGUA_DEMO.dbo.Empresa' does not have a primary 
                 <ScalarProperty Name="Debito" ColumnName="Debito" />
                 <ScalarProperty Name="Credito" ColumnName="Credito" />
                 <ScalarProperty Name="UsuarioNombre" ColumnName="UsuarioNombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="DB_AGUA_DEMOModel.Cliente">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="MontoPendienteMembrecia" ColumnName="MontoPendienteMembrecia" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="MontoMensual" ColumnName="MontoMensual" />
+                <ScalarProperty Name="ServicioSuspendidoFecha" ColumnName="ServicioSuspendidoFecha" />
+                <ScalarProperty Name="ServicioSuspendido" ColumnName="ServicioSuspendido" />
+                <ScalarProperty Name="UsuarioNombre" ColumnName="UsuarioNombre" />
+                <ScalarProperty Name="ServicioTipo" ColumnName="ServicioTipo" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="FechaCreación" ColumnName="FechaCreación" />
+                <ScalarProperty Name="TelefonoCelular" ColumnName="TelefonoCelular" />
+                <ScalarProperty Name="TelefonoRecidencial" ColumnName="TelefonoRecidencial" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="CasaPropia" ColumnName="CasaPropia" />
+                <ScalarProperty Name="NombrePropietario" ColumnName="NombrePropietario" />
+                <ScalarProperty Name="NombreInquilino" ColumnName="NombreInquilino" />
+                <ScalarProperty Name="RegistroActivo" ColumnName="RegistroActivo" />
+                <ScalarProperty Name="ClientesID" ColumnName="ClientesID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

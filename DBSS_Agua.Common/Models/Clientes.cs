@@ -22,13 +22,12 @@ namespace DBSS_Agua.Common.Models
         public string Comentario { get; set; }
         public string ServicioTipo { get; set; }
         public string UsuarioNombre { get; set; }
-        //public bool ServicioSuspendido { get; set; }
         public Nullable<System.DateTime> ServicioSuspendidoFecha { get; set; }
         [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
         public decimal MontoMensual { get; set; }
         [Display(Name = "Image")]
         public string ImagePath { get; set; }
-        public Nullable<Decimal> MontoPendienteMembrecia { get; set; }
+        //public Nullable<Decimal> MontoPendienteMembrecia { get; set; }
         public override string ToString()
         {
             return this.NombreInquilino;

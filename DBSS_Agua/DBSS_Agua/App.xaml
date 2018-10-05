@@ -16,33 +16,20 @@
             <x:String x:Key="UrlClientesController">/Clientes</x:String>
             <x:String x:Key="UrlCxcController">/CuentasPorCobrar</x:String>
 
-
             <!-- General colors -->
 
-            <Color x:Key="MainColor">#1CA5B8</Color>
-            <!--Azul claro-->
-            <Color x:Key="BackgroundColor">#D9D9D9</Color>
-            <!--Gris claro-->
-            <Color x:Key="MenuColor">#FFFFFF</Color>
-            <!--Blanco-->
-            <Color x:Key="FontColor1">#243752</Color>
-            <!--Azul marino-->
-            <Color x:Key="FontColor2">#000000</Color>
-            <!--Negro-->
-            <Color x:Key="AccentColor1">#FF5521</Color>
-            <!--Mamei-->
-            <Color x:Key="AccentColor2">#4DB84B</Color>
-            <!--Verde claro-->
-            <Color x:Key="ButtomFontColor1">#FF404C</Color>
-            <!--Rojo-->
-            <Color x:Key="ButtomFontColor2">#ffffff</Color>
-            <!--Blanco-->
-            <Color x:Key="ButtomBackColor">#000000</Color>
-            <!--Negro-->
-            <Color x:Key="TextBackgroundColor">#A1A1A1</Color>
-            <!--Gris-->
-            <Color x:Key="LoginBackColor">#292923</Color>
-            <!--Negro claro-->
+            <Color x:Key="MainColor">#1CA5B8</Color>            <!--Azul claro-->
+            <Color x:Key="BackgroundColor">#D9D9D9</Color>      <!--Gris claro-->
+            <Color x:Key="MenuColor">#FFFFFF</Color>            <!--Blanco-->
+            <Color x:Key="FontColor1">#243752</Color>           <!--Azul marino-->
+            <Color x:Key="FontColor2">#000000</Color>           <!--Negro-->
+            <Color x:Key="AccentColor1">#FF5521</Color>         <!--Mamei-->
+            <Color x:Key="AccentColor2">#4DB84B</Color>         <!--Verde claro-->
+            <Color x:Key="ButtomFontColor1">#FF404C</Color>     <!--Rojo-->
+            <Color x:Key="ButtomFontColor2">#ffffff</Color>     <!--Blanco-->
+            <Color x:Key="ButtomBackColor">#000000</Color>      <!--Negro-->
+            <Color x:Key="TextBackgroundColor">#A1A1A1</Color>  <!--Gris-->
+            <Color x:Key="LoginBackColor">#292923</Color>       <!--Negro claro-->
 
             <!-- Buttom colors -->
             <Color x:Key="ButtomEditBorderColor">#cdbe32</Color>
