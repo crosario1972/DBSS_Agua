@@ -156,6 +156,46 @@ namespace DBSS_Agua.Servives
             }
         }
 
+        public async Task<Response> GetList<T>(string urlBase, string prefix, string controller, string id)
+        {
+            try
+            {
+                var client = new HttpClient
+                {
+                    //BaseAddress = new Uri(App.BaseAdd)
+                    BaseAddress = new Uri(urlBase)
+                };
+                var url = $"{prefix}{controller}{id}";
+                var response = await client.GetAsync(url);
+                var answer = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = answer,
+                    };
+                }
+
+                var list = JsonConvert.DeserializeObject<List<T>>(answer);
+
+                return new Response
+                {
+                    IsSuccess = true,
+                    Result = list,
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                };
+            }
+        }
+
         //public async Task<Response> GetList<T>(string controller, string customNum)
         //{
         //    try

@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DBSS_Agua.Common.Models;
 
 namespace DBSS_Agua.ViewModels
 {
    public class MainViewModel
    {
         public ClientesViewModel Clientes { get; set; }
-        public ClienteDetallesViewModel ClienteDetalles { get; set; }
-
+        public ClienteViewModel Cliente { get; set; }
+        public CuentasPorCobrarViewModel CuentaPorCobar { get; internal set; }
+        public List<CuentasPorCobrar> CxCList { get; internal set; }
 
         public MainViewModel()
         {

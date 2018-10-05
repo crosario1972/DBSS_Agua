@@ -24,12 +24,15 @@
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>
-                                <MenuItem Text="Detalles" Command="{Binding ClienteDetallesCommand}"/>
+                                <MenuItem Text="Detalles" Command="{Binding ClienteDetailCommand}"/>
                             </ViewCell.ContextActions>
                             <Frame
                                 CornerRadius="15"
                                 HasShadow="True"
                                 Margin="1">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ClienteDetailCommand}"/>
+                                </Frame.GestureRecognizers>
                                 <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>

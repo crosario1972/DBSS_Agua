@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DBSS_Agua.Views.ClienteDetallesPage"             
-             Title="{Binding AppTile}"
+             Title="  Detalles del Usuario"
              BackgroundColor="{StaticResource BackgroundColor}"
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
     <Grid>
@@ -11,91 +11,131 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="98*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <StackLayout
-            BindingContext="{Binding CuentaPorCobar}" 
-            Grid.Row="0" 
-            Orientation="Vertical" 
-            Padding="5,0,5,0">
-            <StackLayout Padding="0"
-                     BackgroundColor="{StaticResource FontColor2}">
+            Grid.Row="0"
+            Padding="5"
+            BindingContext="{Binding Cliente}"
+            BackgroundColor="{StaticResource ButtomBackColor}"
+            Orientation="Horizontal">
+            <Button
+                Command="{Binding ClienteCxC_Command}"
+                Image="ic_Reportes.png"
+                BackgroundColor="{StaticResource ButtomBackColor}"
+                TextColor="{StaticResource ButtomDeleteBorderColor}"
+                BorderWidth="2"
+                BorderRadius="10"
+                BorderColor="{StaticResource ButtomFontColor2}"
+                HeightRequest="50"
+                WidthRequest="60"
+                VerticalOptions="EndAndExpand"
+                HorizontalOptions="Center">
+            </Button>
+            <ActivityIndicator
+                    Color="{StaticResource AccentColor1}"
+                    IsRunning="{Binding IsRunning,Mode=TwoWay}">
+            </ActivityIndicator>
+        </StackLayout>
+
+        <StackLayout 
+            Grid.Row="1" 
+            Spacing="10" 
+            Orientation="Vertical">
+            <ScrollView BindingContext="{Binding Cliente}">
                 <StackLayout 
-                    Orientation="Horizontal" 
-                    BackgroundColor="{StaticResource FontColor2}">
-                    <Label 
-                        Text="{Binding Nombre}" 
-                        TextColor="{StaticResource ButtomFontColor2}"
-                        HorizontalOptions="StartAndExpand"
-                        VerticalOptions="Center">
-                    </Label>
-                    <Label 
-                        Text="{Binding Balance, StringFormat='Balance: {0}'}"  
-                        TextColor="{StaticResource ButtomFontColor2}"
-                        HorizontalOptions="EndAndExpand"
-                        VerticalOptions="Center">
-                    </Label>
+                    Padding="5,0,5,0"
+                    HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Horizontal">
+                        <Label 
+                            Text="Fecha: "
+                            WidthRequest="98"
+                            FontSize="16"
+                            BackgroundColor="{StaticResource TextBackgroundColor}"
+                            TextColor="{StaticResource ButtomBackColor}"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center">
+                        </Label>
+                        <Entry 
+                             Text="{Binding Cliente.FechaCreación, StringFormat='{}{0:dd/MM/yyyy}'}"
+                             FontSize="16"
+                             HorizontalOptions="FillAndExpand">
+                        </Entry>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label 
+                             Text="Nombre: "
+                             WidthRequest="98"
+                             FontSize="16"
+                             BackgroundColor="{StaticResource TextBackgroundColor}"
+                             TextColor="{StaticResource ButtomBackColor}"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Center">
+                        </Label>
+                        <Entry
+                            Text="{Binding Cliente.NombreInquilino}"
+                            FontSize="16"
+                            HorizontalOptions="FillAndExpand">
+                        </Entry>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label 
+                             Text="Propietario: " 
+                             WidthRequest="98"
+                             FontSize="16"
+                             BackgroundColor="{StaticResource TextBackgroundColor}"
+                             TextColor="{StaticResource ButtomBackColor}"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Center">
+                        </Label>
+                        <Entry 
+                            Text="{Binding Cliente.NombrePropietario}"
+                            FontSize="16"
+                            HorizontalOptions="FillAndExpand">
+                        </Entry>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label 
+                            Text="Dirección: " 
+                            WidthRequest="98"
+                            FontSize="16"
+                            BackgroundColor="{StaticResource TextBackgroundColor}"
+                            TextColor="{StaticResource ButtomBackColor}"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center">
+                        </Label>
+                        <Entry  
+                            Text="{Binding Cliente.Direccion}"
+                            FontSize="16"
+                            HorizontalOptions="FillAndExpand">
+                        </Entry>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label 
+                            Text="Membrecia Pendiente: " 
+                            WidthRequest="98"
+                            FontSize="16"
+                            BackgroundColor="{StaticResource TextBackgroundColor}"
+                            TextColor="{StaticResource ButtomBackColor}"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center">
+                        </Label>
+                        <Entry  
+                            Text="{Binding Cliente.MontoPendienteMembrecia, StringFormat=' {0:C0}'}"
+                            FontSize="16"
+                            HorizontalOptions="FillAndExpand">
+                        </Entry>
+                    </StackLayout>
+
                 </StackLayout>
-                <BoxView 
-                    HeightRequest="1"
-                    Color="{StaticResource BackgroundColor}">
-                </BoxView>
-                <StackLayout x:Name="HeaderStackLayout" Orientation="Horizontal" BackgroundColor="{StaticResource FontColor2}">
-                    <Label Text="Fecha" WidthRequest="170" TextColor="{StaticResource AccentColor2}"/>
-                    <Label Text="Cargos" WidthRequest="100" TextColor="{StaticResource AccentColor2}"/>
-                    <Label Text="Pagos" WidthRequest="100" TextColor="{StaticResource AccentColor2}"/>
-                </StackLayout>
-            </StackLayout>
-
-            <ListView
-                BackgroundColor="Silver"
-                HasUnevenRows="True"
-                IsPullToRefreshEnabled="True"
-                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
-                ItemsSource="{Binding CuentaPorCobar}"
-                SeparatorVisibility="None"
-                RefreshCommand="{Binding RefreshCommand, Mode=TwoWay}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid>
-                                <!--<Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding FacturaDetallesCommand}"/>
-                                </Grid.GestureRecognizers>-->
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="25">
-                                    </RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="125*"/>
-                                    <ColumnDefinition Width="75*"/>
-                                    <ColumnDefinition Width="75*"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0"
-                                       FontAttributes="Bold"
-                                       TextColor="{StaticResource ButtomBackColor}"
-                                       Text="{Binding TransaccionFecha, StringFormat='\{0:dd-MMM-yyyy}'}" 
-                                       VerticalOptions="CenterAndExpand"/>
-                                <Label Grid.Column="1"
-                                       TextColor="{StaticResource ButtomFontColor1}"
-                                       Text="{Binding Debito, StringFormat='{0:C0}'}}"
-                                       VerticalOptions="CenterAndExpand"/>
-                                <Label Grid.Column="2" 
-                                       TextColor="{StaticResource FontColor1}"
-                                       Text="{Binding Credito, StringFormat='{0:C0}'}}"
-                                       VerticalOptions="CenterAndExpand"/>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-
-            </ListView>
-
+            </ScrollView>
         </StackLayout>
 
     </Grid>
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem Text="{Binding Main.Balance}"/>
-    </ContentPage.ToolbarItems>-->
 </ContentPage>

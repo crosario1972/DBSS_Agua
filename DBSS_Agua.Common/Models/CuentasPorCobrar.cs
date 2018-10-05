@@ -33,6 +33,12 @@ namespace DBSS_Agua.Common.Models
         public Nullable<decimal> Debito { get; set; }
         public Nullable<decimal> Credito { get; set; }
         public string UsuarioNombre { get; set; }
+        public decimal BalanceDebito { get; set; }
+
+        public decimal BalanceCredito { get; set; }
+
+        public decimal Balance { get; set; }
+
         public override int GetHashCode()
         {
             return ClienteID;

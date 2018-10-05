@@ -1,4 +1,5 @@
 ﻿
+
 namespace DBSS_Agua.ViewModels
 {
     using DBSS_Agua.Common.Models;
@@ -23,7 +24,7 @@ namespace DBSS_Agua.ViewModels
         public decimal creditoSum;
         public string balance;
         private ApiService apiService;
-
+        private int ClienteID;
 
         #endregion
 
@@ -82,6 +83,7 @@ namespace DBSS_Agua.ViewModels
         {
             this.apiService = new ApiService();
             this.LoadCuentasPorCobrar();
+
             //   this.Nombre = App.NombreActual;
         }
 
@@ -139,10 +141,10 @@ namespace DBSS_Agua.ViewModels
 
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
-            var controller = Application.Current.Resources["UrlClientesController"].ToString();
+            var controller = Application.Current.Resources["UrlCxcController"].ToString();
+            string id = $"{"/"}{App.IdActual}";
 
-
-            var response = await this.apiService.GetList<CuentasPorCobrar>(url, prefix, controller);
+            var response = await this.apiService.GetList<CuentasPorCobrar>(url, prefix, controller, id);
             if (!response.IsSuccess)
             {
                 this.IsRefreshing = false;
@@ -152,8 +154,21 @@ namespace DBSS_Agua.ViewModels
 
             //this.MyClientes = (List<Clientes>)response.Result;
 
+            //this.IsRefreshing = false;
+
+            MainViewModel.GetInstance().CxCList = (List<CuentasPorCobrar>)response.Result;
+            this.CuentaPorCobar = new ObservableCollection<CuentasPorCobrarItemViewModel>(this.ToCxCItemViewModel());
+
+            this.DebitoSum = (decimal)CuentaPorCobar.Where(x => x.ClienteID == App.IdActual).Sum(p => p.Debito);
+            this.CreditoSum = (decimal)CuentaPorCobar.Where(x => x.ClienteID == App.IdActual).Sum(p => p.Credito);
+
+            CultureInfo cultureInfo = new CultureInfo("es-DO");
+
+            this.Balance = string.Format(cultureInfo, "{0:C0}", this.DebitoSum - this.CreditoSum);
+
             this.IsRefreshing = false;
         }
+
 
         private void CerrarPrograma()
         {
@@ -164,24 +179,25 @@ namespace DBSS_Agua.ViewModels
             });
         }
 
-        //private IEnumerable<CuentasPorCobrarItemViewModel> ToCxCItemViewModel()
-        //{
-        //    return MainViewModel.GetInstance().CxCList.OrderByDescending(c => c.TransaccionFecha).Select(x => new CuentasPorCobrarItemViewModel
-        //    {
-        //        Balance = x.Balance,
-        //        BalanceCredito = x.BalanceCredito,
-        //        BalanceDebito = x.BalanceDebito,
-        //        ClienteID = x.ClienteID,
-        //        Credito = x.Credito,
-        //        CuentasPorCobrarID = x.CuentasPorCobrarID,
-        //        Debito = x.Debito,
-        //        Descripcion = x.Descripcion,
-        //        TransaccionFecha = x.TransaccionFecha,
-        //        TransaccionReferencia = x.TransaccionReferencia,
-        //        UsuarioNombre = x.UsuarioNombre,
+        private IEnumerable<CuentasPorCobrarItemViewModel> ToCxCItemViewModel()
+        {
+            return MainViewModel.GetInstance().CxCList.OrderByDescending(c => c.FechaCreacion).Select(x => new CuentasPorCobrarItemViewModel
+            {
+                Balance=x.Balance,
+                BalanceCredito=x.BalanceCredito,
+                BalanceDebito=x.BalanceDebito,
+                FechaCreacion= x.FechaCreacion,
+                FechaDePago= x.FechaDePago,
+                ClienteID = x.ClienteID,
+                Credito = x.Credito,
+                CuentasPorCobrarID = x.CuentasPorCobrarID,
+                Debito = x.Debito,
+                Descripcion = x.Descripcion,
+                TransaccionReferencia = x.TransaccionReferencia,
+                UsuarioNombre = x.UsuarioNombre,
 
-        //    });
-        //}
+            });
+        }
 
         #endregion
     }

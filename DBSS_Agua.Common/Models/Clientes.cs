@@ -28,7 +28,7 @@ namespace DBSS_Agua.Common.Models
         public decimal MontoMensual { get; set; }
         [Display(Name = "Image")]
         public string ImagePath { get; set; }
-        public Nullable <Decimal> MontoPendienteMembrecia { get; set; }
+        public Nullable<Decimal> MontoPendienteMembrecia { get; set; }
         public override string ToString()
         {
             return this.NombreInquilino;
@@ -53,13 +53,6 @@ namespace DBSS_Agua.Common.Models
                 return $"http://crosario.ddns.net:8005/{this.ImagePath.Substring(1)}";
             }
         }
-
-
-
-
-
-
-
 
     }
 }

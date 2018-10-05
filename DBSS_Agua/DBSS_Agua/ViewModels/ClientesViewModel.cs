@@ -16,7 +16,7 @@ namespace DBSS_Agua.ViewModels
     public class ClientesViewModel: BaseViewModel
     {
         public List<Clientes> MyClientes { get; set; }
-        private ObservableCollection<ClienteItemViewModel> clientesList;
+        private ObservableCollection<ClientesItemViewModel> clientesList;
         private ApiService apiService;
         private bool isRefreshing;
 
@@ -26,7 +26,7 @@ namespace DBSS_Agua.ViewModels
             set { this.SetValue(ref this.isRefreshing, value); }
         }
 
-        public ObservableCollection<ClienteItemViewModel> ClientesList
+        public ObservableCollection<ClientesItemViewModel> ClientesList
         {
             get { return this.clientesList; }
             set { this.SetValue(ref this.clientesList, value); }
@@ -84,7 +84,7 @@ namespace DBSS_Agua.ViewModels
 
         public void RefreshList()
         {
-            var MyListClienteItemViewModel = MyClientes.Select(p => new ClienteItemViewModel
+            var MyListClienteItemViewModel = MyClientes.Select(p => new ClientesItemViewModel
             {
                 Cedula = p.Cedula,
                 RegistroActivo = p.RegistroActivo,
@@ -106,7 +106,7 @@ namespace DBSS_Agua.ViewModels
                 UsuarioNombre = p.UsuarioNombre,
 
             });
-            this.ClientesList = new ObservableCollection<ClienteItemViewModel>(MyListClienteItemViewModel.OrderBy(c => c.NombreInquilino).Where(x => x.RegistroActivo == true));
+            this.ClientesList = new ObservableCollection<ClientesItemViewModel>(MyListClienteItemViewModel.OrderBy(c => c.NombreInquilino).Where(x => x.RegistroActivo == true));
         }
 
         private void CerrarPrograma()

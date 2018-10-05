@@ -9,6 +9,9 @@ namespace DBSS_Agua
 {
     public partial class App : Application
     {
+        public static int IdActual { get; internal set; }
+        public static string NombreActual { get; internal set; }
+
         public App()
         {
             InitializeComponent();

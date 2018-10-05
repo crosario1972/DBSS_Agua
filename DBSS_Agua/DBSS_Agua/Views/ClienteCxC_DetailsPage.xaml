@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DBSS_Agua.Views.ClienteCxC_DetailsPage"
+             Title="Detalles de los Cargos"
+             BackgroundColor="{StaticResource BackgroundColor}"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="98*" />
+        </Grid.RowDefinitions>
+
+        <StackLayout
+            BindingContext="{Binding CuentaPorCobar}" 
+            Grid.Row="0" 
+            Orientation="Vertical" 
+            Padding="5,0,5,0">
+            <StackLayout Padding="0"
+                     BackgroundColor="{StaticResource FontColor2}">
+                <StackLayout 
+                    Orientation="Horizontal" 
+                    BackgroundColor="{StaticResource FontColor2}">
+                    <Label 
+                        Text="{Binding Nombre}" 
+                        TextColor="{StaticResource ButtomFontColor2}"
+                        HorizontalOptions="StartAndExpand"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Label 
+                        Text="{Binding Balance, StringFormat='Balance: {0}'}"  
+                        TextColor="{StaticResource ButtomFontColor2}"
+                        HorizontalOptions="EndAndExpand"
+                        VerticalOptions="Center">
+                    </Label>
+                </StackLayout>
+                <BoxView 
+                    HeightRequest="1"
+                    Color="{StaticResource BackgroundColor}">
+                </BoxView>
+                <!--<StackLayout x:Name="HeaderStackLayout" Orientation="Horizontal" BackgroundColor="{StaticResource FontColor2}">
+                    <Label Text="C-Fecha" WidthRequest="160" TextColor="{StaticResource AccentColor2}"/>
+                    <Label Text="Cargos" WidthRequest="100" TextColor="{StaticResource AccentColor2}"/>
+                    <Label Text="Pagos" WidthRequest="100" TextColor="{StaticResource AccentColor2}"/>
+                    <Label Text="P-Fecha" WidthRequest="160" TextColor="{StaticResource AccentColor2}"/>
+                </StackLayout>-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="75*"/>
+                        <ColumnDefinition Width="75*"/>
+                        <ColumnDefinition Width="100*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Text="C-Fecha" HorizontalOptions="Start" TextColor="{StaticResource AccentColor2}"/>
+                    <Label Grid.Column="1" Text="Cargos" HorizontalOptions="Start" TextColor="{StaticResource AccentColor2}"/>
+                    <Label Grid.Column="2" Text="Pagos" HorizontalOptions="Start" TextColor="{StaticResource AccentColor2}"/>
+                    <Label Grid.Column="3" Text="P-Fecha" HorizontalOptions="Start" TextColor="{StaticResource AccentColor2}"/>
+
+                </Grid>
+            </StackLayout>
+
+            <ListView
+                BackgroundColor="Silver"
+                HasUnevenRows="True"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                ItemsSource="{Binding CuentaPorCobar}"
+                SeparatorVisibility="None"
+                RefreshCommand="{Binding RefreshCommand, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25">
+                                    </RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="75*"/>
+                                    <ColumnDefinition Width="75*"/>
+                                    <ColumnDefinition Width="100*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource ButtomBackColor}"
+                                       Text="{Binding FechaCreacion, StringFormat='{}{0:dd/MM/yyyy}'}" 
+                                       VerticalOptions="CenterAndExpand"/>
+                                <Label Grid.Column="1"
+                                       TextColor="{StaticResource ButtomFontColor1}"
+                                       Text="{Binding Debito, StringFormat=' {0:C0}'}}"
+                                       VerticalOptions="CenterAndExpand"/>
+                                <Label Grid.Column="2" 
+                                       TextColor="{StaticResource FontColor1}"
+                                       Text="{Binding Credito, StringFormat=' {0:C0}'}}"
+                                       VerticalOptions="CenterAndExpand"/>
+                                <Label Grid.Column="3"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource ButtomBackColor}"
+                                       Text="{Binding FechaDePago, StringFormat='{}{0:dd/MM/yyyy}'}"
+                                       VerticalOptions="CenterAndExpand"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+        </StackLayout>
+
+    </Grid>
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Text="{Binding Main.Balance}"/>
+    </ContentPage.ToolbarItems>-->
+</ContentPage>
