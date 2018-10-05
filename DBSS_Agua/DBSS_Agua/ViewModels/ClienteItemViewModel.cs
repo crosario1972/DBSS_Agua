@@ -1,6 +1,8 @@
 ﻿
 namespace DBSS_Agua.ViewModels
 {
+    using DBSS_Agua.Models;
+
     //public class ClienteItemViewModel : Clientes
     //{
     //    public ICommand ClienteDetallesCommand { get { return new RelayCommand(ClienteDetallesCmd); } }
@@ -12,7 +14,7 @@ namespace DBSS_Agua.ViewModels
     //    }
     //}
 
-    using DBSS_Agua.Common.Models;
+
     using DBSS_Agua.Servives;
     using DBSS_Agua.Views;
     using GalaSoft.MvvmLight.Command;

@@ -6,12 +6,12 @@ namespace DBSS_Agua.ViewModels
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
-    using DBSS_Agua.Common.Models;
     using DBSS_Agua.Helpers;
     using DBSS_Agua.Servives;
     using GalaSoft.MvvmLight.Command;
     using Xamarin.Forms;
     using System.Linq;
+    using DBSS_Agua.Models;
 
     public class ClientesViewModel: BaseViewModel
     {

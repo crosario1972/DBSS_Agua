@@ -1,4 +1,5 @@
-﻿using DBSS_Agua.Common.Models;
+﻿
+using DBSS_Agua.Models;
 using DBSS_Agua.Servives;
 using DBSS_Agua.Views;
 using GalaSoft.MvvmLight.Command;
@@ -103,6 +104,7 @@ namespace DBSS_Agua.ViewModels
         }
 
         private async  void ClienteCxC_Cmd()
+
         {
             //var respuesta = await dialogService.ShowMessageAlert("Reporte", "Decea listar todos los cargos y pagos?");
 

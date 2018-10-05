@@ -20,8 +20,12 @@ namespace DBSS_Agua.API.Controllers
         // GET: api/Clientes
         public IQueryable<Cliente> GetClientes()
         {
-            return db.Clientes;
+            //return View(await db.Clientes.OrderBy(c => c.NombreInquilino).Where(x => x.RegistroActivo == true).ToListAsync());
+            return db.Clientes.OrderBy(c => c.NombreInquilino).Where(x => x.RegistroActivo == true);
+
+
         }
+
 
         // GET: api/Clientes/5
         [ResponseType(typeof(Cliente))]

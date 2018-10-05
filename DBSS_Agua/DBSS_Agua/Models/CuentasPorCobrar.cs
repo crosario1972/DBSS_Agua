@@ -1,6 +1,5 @@
 ﻿
-
-namespace DBSS_Agua.Common.Models
+namespace DBSS_Agua.Models
 {
     using System;
     public class CuentasPorCobrar
