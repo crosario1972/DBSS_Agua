@@ -123,8 +123,8 @@ namespace DBSS_Agua.ViewModels
             //}
 
             MainViewModel.GetInstance().CuentaPorCobar = new CuentasPorCobrarViewModel();
-            await Application.Current.MainPage.Navigation.PushAsync(new ClienteCxC_DetailsPage());
-
+            //await Application.Current.MainPage.Navigation.PushAsync(new ClienteCxC_DetailsPage());
+            await App.Navigator.PushAsync(new ClienteCxC_DetailsPage());
         }
 
 

@@ -76,7 +76,8 @@ namespace DBSS_Agua.ViewModels
             //await navigationService.Navigate("ClientesDetailPage");
 
             MainViewModel.GetInstance().Cliente = new ClienteViewModel(this);
-            await Application.Current.MainPage.Navigation.PushAsync(new ClienteDetallesPage());
+            //await Application.Current.MainPage.Navigation.PushAsync(new ClienteDetallesPage());
+            await App.Navigator.PushAsync(new ClienteDetallesPage());
 
         }
 

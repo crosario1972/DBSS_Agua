@@ -1,5 +1,4 @@
 ﻿using DBSS_Agua.Views;
-using System.Globalization;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,11 +10,12 @@ namespace DBSS_Agua
     {
         public static int IdActual { get; internal set; }
         public static string NombreActual { get; internal set; }
+        public static NavigationPage Navigator { get; internal set; }
 
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new ClientesPage());
+            MainPage = new MasterPage();
         }
 
         protected override void OnStart()
