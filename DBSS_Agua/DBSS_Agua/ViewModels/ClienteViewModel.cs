@@ -18,6 +18,7 @@ namespace DBSS_Agua.ViewModels
         private bool isRunning;
         private bool isEnabled;
         private bool isVisible;
+        public string nombre;
         int clienteID;
         string clienteTipo;
         string clienteNombre;
@@ -48,6 +49,12 @@ namespace DBSS_Agua.ViewModels
             set { this.SetValue(ref this.isVisible, value); }
         }
 
+        public string Nombre
+        {
+            get { return this.nombre; }
+            set { this.SetValue(ref this.nombre, value); }
+        }
+
 
         #endregion
 
@@ -66,7 +73,7 @@ namespace DBSS_Agua.ViewModels
         {
             App.NombreActual = Cliente.NombreInquilino;
             App.IdActual = Cliente.ClientesID;
-
+            this.Nombre = Cliente.NombreInquilino;
             this.Cliente = Cliente;
             //clienteTipo = Cliente.ClienteTipo.ToString();
             //clienteID = Cliente.ClienteID;

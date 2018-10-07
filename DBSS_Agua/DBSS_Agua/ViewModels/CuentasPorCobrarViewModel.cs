@@ -84,7 +84,7 @@ namespace DBSS_Agua.ViewModels
             this.apiService = new ApiService();
             this.LoadCuentasPorCobrar();
 
-            //   this.Nombre = App.NombreActual;
+            this.Nombre = App.NombreActual;
         }
 
 
@@ -183,11 +183,11 @@ namespace DBSS_Agua.ViewModels
         {
             return MainViewModel.GetInstance().CxCList.OrderByDescending(c => c.FechaCreacion).Select(x => new CuentasPorCobrarItemViewModel
             {
-                Balance=x.Balance,
-                BalanceCredito=x.BalanceCredito,
-                BalanceDebito=x.BalanceDebito,
-                FechaCreacion= x.FechaCreacion,
-                FechaDePago= x.FechaDePago,
+                Balance = x.Balance,
+                BalanceCredito = x.BalanceCredito,
+                BalanceDebito = x.BalanceDebito,
+                FechaCreacion = x.FechaCreacion,
+                FechaDePago = x.FechaDePago,
                 ClienteID = x.ClienteID,
                 Credito = x.Credito,
                 CuentasPorCobrarID = x.CuentasPorCobrarID,

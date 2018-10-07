@@ -21,6 +21,12 @@
             BindingContext="{Binding Cliente}"
             BackgroundColor="{StaticResource ButtomBackColor}"
             Orientation="Horizontal">
+            <Label
+                Text="{Binding Nombre}" 
+                TextColor="{StaticResource ButtomFontColor2}"
+                HorizontalOptions="StartAndExpand"
+                VerticalOptions="Center">
+            </Label>
             <Button
                 Command="{Binding ClienteCxC_Command}"
                 Image="ic_Reportes.png"
@@ -101,7 +107,7 @@
 
                     <StackLayout Orientation="Horizontal">
                         <Label 
-                            Text="Dirección: " 
+                            Text="Casa #: " 
                             WidthRequest="98"
                             FontSize="16"
                             BackgroundColor="{StaticResource TextBackgroundColor}"

@@ -11,6 +11,7 @@ namespace DBSS_Agua.ViewModels
         public ClienteViewModel Cliente { get; set; }
         public CuentasPorCobrarViewModel CuentaPorCobar { get; internal set; }
         public List<CuentasPorCobrar> CxCList { get; internal set; }
+        public string Nombre { get; internal set; }
 
         public MainViewModel()
         {
