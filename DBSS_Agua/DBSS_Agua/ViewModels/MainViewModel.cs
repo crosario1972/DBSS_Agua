@@ -6,8 +6,17 @@ using DBSS_Agua.Common.Models;
 
 namespace DBSS_Agua.ViewModels
 {
-   public class MainViewModel
+   public class MainViewModel : BaseViewModel
    {
+        private string revision;
+
+        public string Revision
+        {
+            get { return this.revision; }
+            set { SetValue(ref this.revision, value); }
+
+        }
+
         public ClientesViewModel Clientes { get; set; }
         public ClienteViewModel Cliente { get; set; }
         public CuentasPorCobrarViewModel CuentaPorCobar { get; internal set; }
@@ -22,6 +31,28 @@ namespace DBSS_Agua.ViewModels
             this.Menu = new ObservableCollection<MenuItemViewModel>();
             //Load data
             LoadMenu();
+            LoadRevision();
+        }
+
+        private void LoadRevision()
+        {
+            //'1.1.5.1
+            //'| | | |--- Cantidad de arreglos o midificaciones significativas al Software maxima 10 cambios de numero.
+            //'| | |
+            //'| | |----- Contador de revisiones. Si es letra significa que no ha sido implementado el software.
+            //'| |
+            //'| |------- Version de visual studio (1 = 2008, 2 = 2010, 3 = 2012, 4 = 2015, 5 = 2017)
+            //'|
+            //'|--------- Lenguaje de programacion 1= Visual Basic, 2= WPF C#, 3= Xamarin Forms C#.
+
+            //-------------------------------------------------------------------------------------------------------------------------------------------------
+            // "Rev.3.5.1.0 - 12-MAR-2018" - Production release.
+            // Formularios afectados: 
+            //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+            this.Revision = "Rev.3.5.1.0 - 10-OCT-2018";
+
         }
 
         #region Menu
@@ -29,17 +60,18 @@ namespace DBSS_Agua.ViewModels
         {
             Menu.Add(new MenuItemViewModel()
             {
+                Icon = "ic_CxP.png",
+                Title = "Cuentas x Pagar",
+                PageName = "CuentasPorPagarPage",
+            });
+
+            Menu.Add(new MenuItemViewModel()
+            {
                 Icon = "ic_About.png",
                 Title = "Acerca",
                 PageName = "AcercaPage",
             });
 
-            Menu.Add(new MenuItemViewModel()
-            {
-                Icon = "ic_CxP.png",
-                Title = "Cuentas x Pagar",
-                PageName = "CuentasPorPagarPage",
-            });
 
             //Menu.Add(new MenuItemViewModel()
             //{
