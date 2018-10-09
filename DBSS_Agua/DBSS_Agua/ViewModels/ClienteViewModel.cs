@@ -20,10 +20,8 @@ namespace DBSS_Agua.ViewModels
         private bool isVisible;
         public string nombre;
         int clienteID;
-        string clienteTipo;
         string clienteNombre;
         string nombreClienteActual;
-        private bool ActualizarRegistro;
 
         #endregion
 

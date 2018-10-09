@@ -15,6 +15,7 @@
             <x:String x:Key="UrlPrefix">/api</x:String>
             <x:String x:Key="UrlClientesController">/Clientes</x:String>
             <x:String x:Key="UrlCxcController">/CuentasPorCobrar</x:String>
+            <x:String x:Key="UrlDiarioController">/DiarioGeneral</x:String>
 
             <!-- General colors -->
 

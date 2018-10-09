@@ -42,9 +42,40 @@
           <Property Name="Credito" Type="money" />
           <Property Name="UsuarioNombre" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="CuentasPorPagar">
+          <Key>
+            <PropertyRef Name="CuentasPorPagarID" />
+          </Key>
+          <Property Name="CuentasPorPagarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SuplidorID" Type="int" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="FechaDePago" Type="datetime" />
+          <Property Name="TransaccionReferencia" Type="nvarchar" MaxLength="100" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="255" />
+          <Property Name="Debito" Type="money" />
+          <Property Name="Credito" Type="money" />
+          <Property Name="UsuarioNombre" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DiarioGeneral">
+          <Key>
+            <PropertyRef Name="DiarioGeneralID" />
+          </Key>
+          <Property Name="DiarioGeneralID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="Referencia" Type="nchar" MaxLength="50" />
+          <Property Name="Descripcion" Type="nchar" MaxLength="150" />
+          <Property Name="CuentaNombre" Type="nchar" MaxLength="50" />
+          <Property Name="Auxiliar" Type="money" />
+          <Property Name="Debito" Type="money" />
+          <Property Name="Credito" Type="money" />
+          <Property Name="Usuario" Type="nchar" MaxLength="50" />
+          <Property Name="RegistroUsado" Type="bit" />
+        </EntityType>
         <EntityContainer Name="DB_AGUA_DEMOModelStoreContainer">
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CuentasPorCobrar" EntityType="Self.CuentasPorCobrar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CuentasPorPagar" EntityType="Self.CuentasPorPagar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiarioGeneral" EntityType="Self.DiarioGeneral" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -67,6 +98,8 @@
         <EntityContainer Name="DB_AGUA_DEMOEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CuentasPorCobrars" EntityType="Self.CuentasPorCobrar" />
           <EntitySet Name="Clientes" EntityType="DB_AGUA_DEMOModel.Cliente" />
+          <EntitySet Name="CuentasPorPagars" EntityType="DB_AGUA_DEMOModel.CuentasPorPagar" />
+          <EntitySet Name="DiarioGenerals" EntityType="DB_AGUA_DEMOModel.DiarioGeneral" />
           </EntityContainer>
         <EntityType Name="Cliente">
           <Key>
@@ -90,6 +123,35 @@
           <Property Name="MontoMensual" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MontoPendienteMembrecia" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="CuentasPorPagar">
+          <Key>
+            <PropertyRef Name="CuentasPorPagarID" />
+          </Key>
+          <Property Name="CuentasPorPagarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SuplidorID" Type="Int32" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="FechaDePago" Type="DateTime" Precision="3" />
+          <Property Name="TransaccionReferencia" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Debito" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Credito" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="UsuarioNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DiarioGeneral">
+          <Key>
+            <PropertyRef Name="DiarioGeneralID" />
+          </Key>
+          <Property Name="DiarioGeneralID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="Referencia" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <Property Name="CuentaNombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Auxiliar" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Debito" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Credito" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="RegistroUsado" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -133,6 +195,37 @@
                 <ScalarProperty Name="NombreInquilino" ColumnName="NombreInquilino" />
                 <ScalarProperty Name="RegistroActivo" ColumnName="RegistroActivo" />
                 <ScalarProperty Name="ClientesID" ColumnName="ClientesID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CuentasPorPagars">
+            <EntityTypeMapping TypeName="DB_AGUA_DEMOModel.CuentasPorPagar">
+              <MappingFragment StoreEntitySet="CuentasPorPagar">
+                <ScalarProperty Name="UsuarioNombre" ColumnName="UsuarioNombre" />
+                <ScalarProperty Name="Credito" ColumnName="Credito" />
+                <ScalarProperty Name="Debito" ColumnName="Debito" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="TransaccionReferencia" ColumnName="TransaccionReferencia" />
+                <ScalarProperty Name="FechaDePago" ColumnName="FechaDePago" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="SuplidorID" ColumnName="SuplidorID" />
+                <ScalarProperty Name="CuentasPorPagarID" ColumnName="CuentasPorPagarID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiarioGenerals">
+            <EntityTypeMapping TypeName="DB_AGUA_DEMOModel.DiarioGeneral">
+              <MappingFragment StoreEntitySet="DiarioGeneral">
+                <ScalarProperty Name="RegistroUsado" ColumnName="RegistroUsado" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Credito" ColumnName="Credito" />
+                <ScalarProperty Name="Debito" ColumnName="Debito" />
+                <ScalarProperty Name="Auxiliar" ColumnName="Auxiliar" />
+                <ScalarProperty Name="CuentaNombre" ColumnName="CuentaNombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="DiarioGeneralID" ColumnName="DiarioGeneralID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

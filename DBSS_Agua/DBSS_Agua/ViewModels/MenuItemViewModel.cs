@@ -39,6 +39,10 @@
 
             switch (this.PageName)
             {
+                case "DiarioGeneralPage":
+                    MainViewModel.GetInstance().DiarioGeneral = new DiarioGeneralViewModel();
+                    await App.Navigator.PushAsync(new DiarioGeneralPage());
+                    break;
                 case "CuentasPorPagarPage":
                   //  MainViewModel.GetInstance().Clientes = new ClientesViewModel();
                     await App.Navigator.PushAsync(new CuentasPorPagarPage());

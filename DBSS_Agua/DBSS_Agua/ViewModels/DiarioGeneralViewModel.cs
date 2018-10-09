@@ -1,39 +1,39 @@
-﻿
+﻿using DBSS_Agua.Helpers;
+using DBSS_Agua.Models;
+using DBSS_Agua.Servives;
+using GalaSoft.MvvmLight.Command;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace DBSS_Agua.ViewModels
 {
-    using DBSS_Agua.Common.Models;
-    using DBSS_Agua.Helpers;
-    using DBSS_Agua.Models;
-    using DBSS_Agua.Servives;
-    using GalaSoft.MvvmLight.Command;
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Globalization;
-    using System.Linq;
-    using System.Windows.Input;
-    using Xamarin.Forms;
-    public class CuentasPorCobrarViewModel : BaseViewModel
+    public class DiarioGeneralViewModel: BaseViewModel
     {
 
+
         #region Attributes
-        private ObservableCollection<CuentasPorCobrarItemViewModel> cuentaPorCobar;
+        private ObservableCollection<DiarioGeneralItemViewModel> diarioGeneral;
         private bool isRefreshing;
-        public string nombre;
+        //public string nombre;
         public decimal debitoSum;
         public decimal creditoSum;
         public string balance;
         private ApiService apiService;
-        private int ClienteID;
+        // private int ClienteID;
 
         #endregion
 
         #region Properties
-        public ObservableCollection<CuentasPorCobrarItemViewModel> CuentaPorCobar
+        public ObservableCollection<DiarioGeneralItemViewModel> DiarioGeneral
         {
-            get { return this.cuentaPorCobar; }
-            set { this.SetValue(ref this.cuentaPorCobar, value); }
+            get { return this.diarioGeneral; }
+            set { this.SetValue(ref this.diarioGeneral, value); }
 
         }
 
@@ -61,41 +61,30 @@ namespace DBSS_Agua.ViewModels
             set { this.SetValue(ref this.balance, value); }
         }
 
-        public string Nombre
-        {
-            get { return this.nombre; }
-            set { this.SetValue(ref this.nombre, value); }
-        }
-
         #endregion
 
         #region Commands
 
-        public ICommand RefreshCommand { get { return new RelayCommand(LoadCuentasPorCobrar); } }
-
-
-
+        public ICommand RefreshCommand { get { return new RelayCommand(LoadDiarioGeneral); } }
 
         #endregion
 
         #region Constructor
 
-        public CuentasPorCobrarViewModel()
+        public DiarioGeneralViewModel()
         {
             this.apiService = new ApiService();
-            this.LoadCuentasPorCobrar();
+            this.LoadDiarioGeneral();
 
-            this.Nombre = App.NombreActual;
         }
 
 
         #endregion
 
+
         #region Methods
 
-
-
-        private async void LoadCuentasPorCobrar()
+        private async void LoadDiarioGeneral()
         {
             this.IsRefreshing = true;
             //========================Validacion de la conexion al internet y el servidor===============================================================
@@ -123,10 +112,10 @@ namespace DBSS_Agua.ViewModels
 
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
-            var controller = Application.Current.Resources["UrlCxcController"].ToString();
-            string id = $"{"/"}{App.IdActual}";
+            var controller = Application.Current.Resources["UrlDiarioController"].ToString();
+            //string id = $"{"/"}{App.IdActual}";
 
-            var response = await this.apiService.GetList<CuentasPorCobrar>(url, prefix, controller, id);
+            var response = await this.apiService.GetList<DiarioGeneral>(url, prefix, controller);
             if (!response.IsSuccess)
             {
                 this.IsRefreshing = false;
@@ -138,11 +127,11 @@ namespace DBSS_Agua.ViewModels
 
             //this.IsRefreshing = false;
 
-            MainViewModel.GetInstance().CxCList = (List<CuentasPorCobrar>)response.Result;
-            this.CuentaPorCobar = new ObservableCollection<CuentasPorCobrarItemViewModel>(this.ToCxCItemViewModel());
+            MainViewModel.GetInstance().DiarioGeneralList = (List<DiarioGeneral>)response.Result;
+            this.DiarioGeneral = new ObservableCollection<DiarioGeneralItemViewModel>(this.ToDiarioItemViewModel());
 
-            this.DebitoSum = (decimal)CuentaPorCobar.Where(x => x.ClienteID == App.IdActual).Sum(p => p.Debito);
-            this.CreditoSum = (decimal)CuentaPorCobar.Where(x => x.ClienteID == App.IdActual).Sum(p => p.Credito);
+            this.DebitoSum = (decimal)DiarioGeneral.Sum(p => p.Debito);
+            this.CreditoSum = (decimal)DiarioGeneral.Sum(p => p.Credito);
 
             CultureInfo cultureInfo = new CultureInfo("es-DO");
 
@@ -161,22 +150,17 @@ namespace DBSS_Agua.ViewModels
             });
         }
 
-        private IEnumerable<CuentasPorCobrarItemViewModel> ToCxCItemViewModel()
+        private IEnumerable<DiarioGeneralItemViewModel> ToDiarioItemViewModel()
         {
-            return MainViewModel.GetInstance().CxCList.OrderByDescending(c => c.FechaCreacion).Select(x => new CuentasPorCobrarItemViewModel
+            return MainViewModel.GetInstance().DiarioGeneralList.OrderByDescending(c => c.Fecha).Select(x => new DiarioGeneralItemViewModel
             {
-                Balance = x.Balance,
+                Fecha = x.Fecha,
+                CuentaNombre = x.CuentaNombre,
+                Credito = x.Credito,
+                Debito = x.Debito,
                 BalanceCredito = x.BalanceCredito,
                 BalanceDebito = x.BalanceDebito,
-                FechaCreacion = x.FechaCreacion,
-                FechaDePago = x.FechaDePago,
-                ClienteID = x.ClienteID,
-                Credito = x.Credito,
-                CuentasPorCobrarID = x.CuentasPorCobrarID,
-                Debito = x.Debito,
-                Descripcion = x.Descripcion,
-                TransaccionReferencia = x.TransaccionReferencia,
-                UsuarioNombre = x.UsuarioNombre,
+                Balance = x.Balance,
 
             });
         }

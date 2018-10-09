@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using DBSS_Agua.Common.Models;
+using DBSS_Agua.Models;
 
 namespace DBSS_Agua.ViewModels
 {
@@ -20,9 +21,11 @@ namespace DBSS_Agua.ViewModels
         public ClientesViewModel Clientes { get; set; }
         public ClienteViewModel Cliente { get; set; }
         public CuentasPorCobrarViewModel CuentaPorCobar { get; internal set; }
+        public DiarioGeneralViewModel DiarioGeneral { get; internal set; }
         public List<CuentasPorCobrar> CxCList { get; internal set; }
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
         public string Nombre { get; internal set; }
+        public List<DiarioGeneral> DiarioGeneralList { get; internal set; }
 
         public MainViewModel()
         {
@@ -60,6 +63,13 @@ namespace DBSS_Agua.ViewModels
         {
             Menu.Add(new MenuItemViewModel()
             {
+                Icon = "ic_Empresa.png",
+                Title = "Ingreso - Egresos",
+                PageName = "DiarioGeneralPage",
+            });
+
+            Menu.Add(new MenuItemViewModel()
+            {
                 Icon = "ic_CxP.png",
                 Title = "Cuentas x Pagar",
                 PageName = "CuentasPorPagarPage",
@@ -73,12 +83,6 @@ namespace DBSS_Agua.ViewModels
             });
 
 
-            //Menu.Add(new MenuItemViewModel()
-            //{
-            //    Icon = "ic_logoutColor.png",
-            //    Title = "Cerrar sesión",
-            //    PageName = "LogoutPage",
-            //});
 
             //Menu.Add(new MenuItemViewModel()
             //{

@@ -236,6 +236,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\CuentasPorCobrarController.cs" />
+    <Compile Include="Controllers\CuentasPorPagarController.cs" />
+    <Compile Include="Controllers\DiarioGeneralController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -247,6 +249,9 @@
       <DependentUpon>DBSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CuentasPorCobrar.cs">
+      <DependentUpon>DBSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CuentasPorPagar.cs">
       <DependentUpon>DBSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DBSS_Model.Context.cs">
@@ -263,6 +268,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DBSS_Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DiarioGeneral.cs">
+      <DependentUpon>DBSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
