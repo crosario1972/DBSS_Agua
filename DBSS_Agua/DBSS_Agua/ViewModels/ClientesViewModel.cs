@@ -19,6 +19,7 @@ namespace DBSS_Agua.ViewModels
         private ObservableCollection<ClientesItemViewModel> clientesList;
         private ApiService apiService;
         private bool isRefreshing;
+        private string filter;
 
         public bool IsRefreshing
         {
@@ -32,12 +33,21 @@ namespace DBSS_Agua.ViewModels
             set { this.SetValue(ref this.clientesList, value); }
         }
 
+        public string Filter
+        {
+            get { return this.filter; }
+            set { this.SetValue(ref this.filter, value); this.RefreshList(); }
+        }
+
         public ClientesViewModel()
         {
             this.apiService = new ApiService();
             this.LoadClientes();
 
         }
+
+        public ICommand SearchCommand { get { return new RelayCommand(RefreshList); } }
+        public ICommand RefreshCommand { get { return new RelayCommand(RefreshList); } }
 
         private async void LoadClientes()
         {
@@ -80,35 +90,67 @@ namespace DBSS_Agua.ViewModels
 
             this.MyClientes = (List<Clientes>)response.Result;
             this.RefreshList();
-            this.IsRefreshing = false;
 
         }
 
         public void RefreshList()
         {
-            var MyListClienteItemViewModel = MyClientes.Select(p => new ClientesItemViewModel
+            if (string.IsNullOrEmpty(this.Filter))
             {
-                Cedula = p.Cedula,
-                RegistroActivo = p.RegistroActivo,
-                CasaPropia = p.CasaPropia,
-                ClientesID = p.ClientesID,
-                Comentario = p.Comentario,
-                Direccion = p.Direccion,
-                FechaCreación = p.FechaCreación,
-                ImagePath = p.ImagePath,
-                MontoMensual = p.MontoMensual,
-                MontoPendienteMembrecia = p.MontoPendienteMembrecia,
-                NombreInquilino = p.NombreInquilino,
-                NombrePropietario = p.NombrePropietario,
-                ServicioSuspendido = p.ServicioSuspendido,
-                ServicioSuspendidoFecha = p.ServicioSuspendidoFecha,
-                ServicioTipo = p.ServicioTipo,
-                TelefonoCelular = p.TelefonoCelular,
-                TelefonoRecidencial = p.TelefonoRecidencial,
-                UsuarioNombre = p.UsuarioNombre,
+                var MyListClienteItemViewModel = MyClientes.Select(p => new ClientesItemViewModel
+                {
+                    Cedula = p.Cedula,
+                    RegistroActivo = p.RegistroActivo,
+                    CasaPropia = p.CasaPropia,
+                    ClientesID = p.ClientesID,
+                    Comentario = p.Comentario,
+                    Direccion = p.Direccion,
+                    FechaCreación = p.FechaCreación,
+                    ImagePath = p.ImagePath,
+                    MontoMensual = p.MontoMensual,
+                    MontoPendienteMembrecia = p.MontoPendienteMembrecia,
+                    NombreInquilino = p.NombreInquilino,
+                    NombrePropietario = p.NombrePropietario,
+                    ServicioSuspendido = p.ServicioSuspendido,
+                    ServicioSuspendidoFecha = p.ServicioSuspendidoFecha,
+                    ServicioTipo = p.ServicioTipo,
+                    TelefonoCelular = p.TelefonoCelular,
+                    TelefonoRecidencial = p.TelefonoRecidencial,
+                    UsuarioNombre = p.UsuarioNombre,
 
-            });
-            this.ClientesList = new ObservableCollection<ClientesItemViewModel>(MyListClienteItemViewModel.OrderBy(c => c.NombreInquilino).Where(x => x.RegistroActivo == true));
+                });
+                this.ClientesList = new ObservableCollection<ClientesItemViewModel>(MyListClienteItemViewModel.OrderBy(c => c.NombreInquilino).Where(x => x.RegistroActivo == true));
+                this.IsRefreshing = false;
+
+            }
+            else
+            {
+                var MyListClienteItemViewModel = MyClientes.Select(p => new ClientesItemViewModel
+                {
+                    Cedula = p.Cedula,
+                    RegistroActivo = p.RegistroActivo,
+                    CasaPropia = p.CasaPropia,
+                    ClientesID = p.ClientesID,
+                    Comentario = p.Comentario,
+                    Direccion = p.Direccion,
+                    FechaCreación = p.FechaCreación,
+                    ImagePath = p.ImagePath,
+                    MontoMensual = p.MontoMensual,
+                    MontoPendienteMembrecia = p.MontoPendienteMembrecia,
+                    NombreInquilino = p.NombreInquilino,
+                    NombrePropietario = p.NombrePropietario,
+                    ServicioSuspendido = p.ServicioSuspendido,
+                    ServicioSuspendidoFecha = p.ServicioSuspendidoFecha,
+                    ServicioTipo = p.ServicioTipo,
+                    TelefonoCelular = p.TelefonoCelular,
+                    TelefonoRecidencial = p.TelefonoRecidencial,
+                    UsuarioNombre = p.UsuarioNombre,
+
+                }).Where(x => x.NombreInquilino.ToLower().Contains(this.Filter.ToLower())).ToList();
+                this.ClientesList = new ObservableCollection<ClientesItemViewModel>(MyListClienteItemViewModel.OrderBy(c => c.NombreInquilino).Where(x => x.RegistroActivo == true));
+                this.IsRefreshing = false;
+
+            }
         }
 
         private void CerrarPrograma()
@@ -120,6 +162,5 @@ namespace DBSS_Agua.ViewModels
             });
         }
 
-        public ICommand RefreshCommand { get { return new RelayCommand(LoadClientes); } }
     }
 }

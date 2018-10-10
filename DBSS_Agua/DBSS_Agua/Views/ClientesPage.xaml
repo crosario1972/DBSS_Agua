@@ -10,8 +10,16 @@
         <StackLayout 
             BindingContext="{Binding Clientes}"
             Padding="10">
-
-
+            <SearchBar
+                    HeightRequest="50"
+                    Text="{Binding Filter, Mode=TwoWay}"
+                    Placeholder="Buscar..."
+                    SearchCommand="{Binding SearchCommand}">
+            </SearchBar>
+            <BoxView
+                HeightRequest="3"
+                Color="{StaticResource AccentColor1}">
+            </BoxView>
             <ListView 
                 HasUnevenRows="True"
                 IsPullToRefreshEnabled="True"
@@ -20,7 +28,7 @@
                 SeparatorVisibility="Default"
                 SeparatorColor="Black"
                 RefreshCommand="{Binding RefreshCommand}"
-                BackgroundColor="{StaticResource BackgroundColor}">
+                BackgroundColor="{StaticResource MenuColor}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -30,7 +38,8 @@
                             <Frame
                                 CornerRadius="15"
                                 HasShadow="True"
-                                Margin="1">
+                                Margin="1"
+                                BackgroundColor="{StaticResource BackgroundColor}">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding ClienteDetailCommand}"/>
                                 </Frame.GestureRecognizers>
