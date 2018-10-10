@@ -1,16 +1,13 @@
 ﻿
-using DBSS_Agua.Models;
-using DBSS_Agua.Servives;
-using DBSS_Agua.Views;
-using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace DBSS_Agua.ViewModels
 {
+    using DBSS_Agua.Models;
+    using DBSS_Agua.Servives;
+    using DBSS_Agua.Views;
+    using GalaSoft.MvvmLight.Command;
+    using System.Windows.Input;
+
     public class ClienteViewModel : BaseViewModel
     {
         #region Attribute
@@ -73,14 +70,6 @@ namespace DBSS_Agua.ViewModels
             App.IdActual = Cliente.ClientesID;
             this.Nombre = Cliente.NombreInquilino;
             this.Cliente = Cliente;
-            //clienteTipo = Cliente.ClienteTipo.ToString();
-            //clienteID = Cliente.ClienteID;
-            //clienteNombre = Cliente.Nombre;
-            //navigationService = new NavigationService();
-            //apiService = new ApiService();
-            //dialogService = new DialogService();
-            //IsVisible = true;
-            //TiposList = GetTipos().OrderBy(c => c.ValorTipo).ToList();
         }
 
         #endregion
@@ -111,17 +100,8 @@ namespace DBSS_Agua.ViewModels
         private async  void ClienteCxC_Cmd()
 
         {
-            //var respuesta = await dialogService.ShowMessageAlert("Reporte", "Decea listar todos los cargos y pagos?");
-
-            //if (respuesta != false)
-            //{
-            //    MainViewModel.GetInstance().CuentaPorCobar = new CuentasPorCobrarViewModel();
-            //    await navigationService.Navigate("ClienteCxC_DetailsPage");
-
-            //}
 
             MainViewModel.GetInstance().CuentaPorCobar = new CuentasPorCobrarViewModel();
-            //await Application.Current.MainPage.Navigation.PushAsync(new ClienteCxC_DetailsPage());
             await App.Navigator.PushAsync(new ClienteCxC_DetailsPage());
         }
 

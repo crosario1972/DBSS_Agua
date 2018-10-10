@@ -4,7 +4,7 @@
              x:Class="DBSS_Agua.Views.ClientesPage"
              xmlns:i18n="clr-namespace:DBSS_Agua.Helpers"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="{i18n:Translate Clients}">
+             Title="Usuarios del acueducto">
     <ContentPage.Content>
         <StackLayout 
             BindingContext="{Binding Clientes}"

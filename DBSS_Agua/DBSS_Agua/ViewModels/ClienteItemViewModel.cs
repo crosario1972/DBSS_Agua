@@ -2,26 +2,12 @@
 namespace DBSS_Agua.ViewModels
 {
     using DBSS_Agua.Models;
-
-    //public class ClienteItemViewModel : Clientes
-    //{
-    //    public ICommand ClienteDetallesCommand { get { return new RelayCommand(ClienteDetallesCmd); } }
-
-    //    private async void ClienteDetallesCmd()
-    //    {
-    //        MainViewModel.GetInstance().Cliente = new ClienteViewModel(this);
-    //        await Application.Current.MainPage.Navigation.PushAsync(new ClienteDetallesPage());
-    //    }
-    //}
-
-
     using DBSS_Agua.Servives;
     using DBSS_Agua.Views;
     using GalaSoft.MvvmLight.Command;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
     using System.Windows.Input;
-    using Xamarin.Forms;
 
     public class ClientesItemViewModel : Clientes, INotifyPropertyChanged
     {
@@ -52,8 +38,6 @@ namespace DBSS_Agua.ViewModels
         public ClientesItemViewModel()
         {
             apiService = new ApiService();
-            //dialogService = new DialogService();
-            //TiposList = GetTipos().OrderBy(c => c.ValorTipo).ToList();
 
         }
 
@@ -71,12 +55,7 @@ namespace DBSS_Agua.ViewModels
 
         private async void ClienteDetailCmd()
         {
-
-            //MainViewModel.GetInstance().Cliente = new ClienteViewModel(this);
-            //await navigationService.Navigate("ClientesDetailPage");
-
             MainViewModel.GetInstance().Cliente = new ClienteViewModel(this);
-            //await Application.Current.MainPage.Navigation.PushAsync(new ClienteDetallesPage());
             await App.Navigator.PushAsync(new ClienteDetallesPage());
 
         }

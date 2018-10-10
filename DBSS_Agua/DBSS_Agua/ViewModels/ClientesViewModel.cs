@@ -36,6 +36,7 @@ namespace DBSS_Agua.ViewModels
         {
             this.apiService = new ApiService();
             this.LoadClientes();
+        //    this.IsRefreshing = false;
         }
 
         private async void LoadClientes()
@@ -107,6 +108,7 @@ namespace DBSS_Agua.ViewModels
 
             });
             this.ClientesList = new ObservableCollection<ClientesItemViewModel>(MyListClienteItemViewModel.OrderBy(c => c.NombreInquilino).Where(x => x.RegistroActivo == true));
+            
         }
 
         private void CerrarPrograma()

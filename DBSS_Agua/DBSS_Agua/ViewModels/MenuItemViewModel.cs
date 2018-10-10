@@ -1,7 +1,6 @@
 ﻿namespace DBSS_Agua.ViewModels
 {
     using DBSS_Agua.Views;
-    //using DBSS_Phone.Services;
     using GalaSoft.MvvmLight.Command;
     using System.Windows.Input;
     public class MenuItemViewModel
@@ -33,8 +32,6 @@
 
         private async void GoTo()
         {
-            //MainViewModel.GetInstance().CuentaPorCobar = new CuentasPorCobrarViewModel();
-            //await App.Navigator.PushAsync(new ClienteCxC_DetailsPage());
            App.Master.IsPresented = false;
 
             switch (this.PageName)
@@ -43,9 +40,9 @@
                     MainViewModel.GetInstance().DiarioGeneral = new DiarioGeneralViewModel();
                     await App.Navigator.PushAsync(new DiarioGeneralPage());
                     break;
-                case "CuentasPorPagarPage":
-                  //  MainViewModel.GetInstance().Clientes = new ClientesViewModel();
-                    await App.Navigator.PushAsync(new CuentasPorPagarPage());
+                case "SuplidoresPage":
+                    MainViewModel.GetInstance().Suplidores = new SuplidoresViewModel();
+                    await App.Navigator.PushAsync(new SuplidoresPage());
                     break;
                 case "AcercaPage":
                     //MainViewModel.GetInstance().Empleados = new EmpleadosViewModel();

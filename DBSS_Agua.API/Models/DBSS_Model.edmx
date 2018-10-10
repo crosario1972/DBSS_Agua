@@ -71,11 +71,24 @@
           <Property Name="Usuario" Type="nchar" MaxLength="50" />
           <Property Name="RegistroUsado" Type="bit" />
         </EntityType>
+        <EntityType Name="Suplidores">
+          <Key>
+            <PropertyRef Name="SuplidorID" />
+          </Key>
+          <Property Name="SuplidorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegistroActivo" Type="bit" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="25" />
+          <Property Name="TelefonoRecidencial" Type="nvarchar" MaxLength="15" />
+          <Property Name="TelefonoCelular" Type="nvarchar" MaxLength="15" />
+          <Property Name="Comentario" Type="nvarchar" MaxLength="255" />
+          <Property Name="UsuarioNombre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityContainer Name="DB_AGUA_DEMOModelStoreContainer">
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CuentasPorCobrar" EntityType="Self.CuentasPorCobrar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CuentasPorPagar" EntityType="Self.CuentasPorPagar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DiarioGeneral" EntityType="Self.DiarioGeneral" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suplidores" EntityType="Self.Suplidores" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -100,6 +113,7 @@
           <EntitySet Name="Clientes" EntityType="DB_AGUA_DEMOModel.Cliente" />
           <EntitySet Name="CuentasPorPagars" EntityType="DB_AGUA_DEMOModel.CuentasPorPagar" />
           <EntitySet Name="DiarioGenerals" EntityType="DB_AGUA_DEMOModel.DiarioGeneral" />
+          <EntitySet Name="Suplidores" EntityType="DB_AGUA_DEMOModel.Suplidore" />
           </EntityContainer>
         <EntityType Name="Cliente">
           <Key>
@@ -152,6 +166,18 @@
           <Property Name="Credito" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="RegistroUsado" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Suplidore">
+          <Key>
+            <PropertyRef Name="SuplidorID" />
+          </Key>
+          <Property Name="SuplidorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegistroActivo" Type="Boolean" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="TelefonoRecidencial" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="TelefonoCelular" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Comentario" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UsuarioNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -226,6 +252,19 @@
                 <ScalarProperty Name="Referencia" ColumnName="Referencia" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="DiarioGeneralID" ColumnName="DiarioGeneralID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suplidores">
+            <EntityTypeMapping TypeName="DB_AGUA_DEMOModel.Suplidore">
+              <MappingFragment StoreEntitySet="Suplidores">
+                <ScalarProperty Name="UsuarioNombre" ColumnName="UsuarioNombre" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="TelefonoCelular" ColumnName="TelefonoCelular" />
+                <ScalarProperty Name="TelefonoRecidencial" ColumnName="TelefonoRecidencial" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RegistroActivo" ColumnName="RegistroActivo" />
+                <ScalarProperty Name="SuplidorID" ColumnName="SuplidorID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

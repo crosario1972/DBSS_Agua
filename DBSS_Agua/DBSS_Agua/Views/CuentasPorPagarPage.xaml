@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
 
         <StackLayout
-            BindingContext="{Binding CuentaPorCobar}" 
+            BindingContext="{Binding CuentaPorPagar}" 
             Grid.Row="0" 
             Orientation="Vertical" 
             Padding="5,0,5,0">
@@ -43,14 +43,14 @@
                 </BoxView>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="165*"/>
-                        <ColumnDefinition Width="105*"/>
-                        <ColumnDefinition Width="80*"/>
+                        <ColumnDefinition Width="170*"/>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="100*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Text="Descripción:" HorizontalOptions="Start" TextColor="{StaticResource AccentColor2}"/>
-                    <Label Grid.Column="1" Text="Pagó en:" HorizontalOptions="Start" TextColor="{StaticResource AccentColor2}"/>
-                    <Label Grid.Column="2" Text="Monto:" HorizontalOptions="Start" TextColor="{StaticResource AccentColor2}"/>
+                    <Label Grid.Column="0" Text="Fecha:" HorizontalOptions="Start" TextColor="{StaticResource AccentColor2}"/>
+                    <Label Grid.Column="1" Text="Cargos:" HorizontalOptions="Start" TextColor="{StaticResource AccentColor2}"/>
+                    <Label Grid.Column="2" Text="Pagos:" HorizontalOptions="Start" TextColor="{StaticResource AccentColor2}"/>
 
                 </Grid>
             </StackLayout>
@@ -60,7 +60,7 @@
                 HasUnevenRows="True"
                 IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
-                ItemsSource="{Binding CuentaPorCobar}"
+                ItemsSource="{Binding CuentaPorPagar}"
                 SeparatorVisibility="None"
                 RefreshCommand="{Binding RefreshCommand, Mode=TwoWay}">
                 <ListView.ItemTemplate>
@@ -72,19 +72,19 @@
                                     </RowDefinition>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="165*"/>
-                                    <ColumnDefinition Width="105*"/>
-                                    <ColumnDefinition Width="80*"/>
+                                    <ColumnDefinition Width="170*"/>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="100*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0"
                                        FontAttributes="Bold"
                                        TextColor="{StaticResource ButtomBackColor}"
-                                       Text="{Binding Descripcion, StringFormat='{}{0:dd/MM/yyyy}'}" 
+                                       Text="{Binding FechaCreacion, StringFormat='{}{0:dd/MM/yyyy}'}" 
                                        VerticalOptions="CenterAndExpand"/>
                                 <Label Grid.Column="1"
                                        FontAttributes="Bold"
                                        TextColor="{StaticResource ButtomBackColor}"
-                                       Text="{Binding FechaDePago, StringFormat='{}{0:dd/MM/yyyy}'}"
+                                       Text="{Binding Debito, StringFormat=' {0:C0}'}}"
                                        VerticalOptions="CenterAndExpand"/>
                                 <Label Grid.Column="2" 
                                        TextColor="{StaticResource FontColor1}"

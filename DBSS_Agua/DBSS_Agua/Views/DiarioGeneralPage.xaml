@@ -26,7 +26,7 @@
                     BackgroundColor="{StaticResource FontColor2}">
                     <Label 
                         Text="{Binding Balance, StringFormat='Balance: {0}'}"  
-                        TextColor="{StaticResource AccentColor2}"
+                        TextColor="{StaticResource MenuColor}"
                         HorizontalOptions="EndAndExpand"
                         VerticalOptions="Center">
                     </Label>
@@ -38,15 +38,15 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="85*"/>
-                        <ColumnDefinition Width="140*"/>
-                        <ColumnDefinition Width="60*"/>
-                        <ColumnDefinition Width="60*"/>
+                        <ColumnDefinition Width="130*"/>
+                        <ColumnDefinition Width="70*"/>
+                        <ColumnDefinition Width="70*"/>
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0" Text="Fecha:" HorizontalOptions="Start" TextColor="{StaticResource AccentColor2}"/>
                     <Label Grid.Column="1" Text="Detalles:" HorizontalOptions="Start" TextColor="{StaticResource AccentColor2}"/>
-                    <Label Grid.Column="2" Text="Cobros:" HorizontalOptions="Start" TextColor="{StaticResource AccentColor2}"/>
-                    <Label Grid.Column="3" Text="Pagos:" HorizontalOptions="Start" TextColor="{StaticResource AccentColor2}"/>
+                    <Label Grid.Column="2" Text="Cobros :" HorizontalOptions="Start" TextColor="{StaticResource AccentColor2}"/>
+                    <Label Grid.Column="3" Text="Pagos :" HorizontalOptions="Start" TextColor="{StaticResource AccentColor2}"/>
 
                 </Grid>
             </StackLayout>
@@ -69,27 +69,28 @@
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="85*"/>
-                                    <ColumnDefinition Width="140*"/>
-                                    <ColumnDefinition Width="60*"/>
-                                    <ColumnDefinition Width="60*"/>
+                                    <ColumnDefinition Width="130*"/>
+                                    <ColumnDefinition Width="70*"/>
+                                    <ColumnDefinition Width="70*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0"
-                                       FontAttributes="Bold"
+                                       FontAttributes="Bold" 
                                        TextColor="{StaticResource ButtomBackColor}"
+                                       BackgroundColor="{StaticResource MenuColor}"
                                        Text="{Binding Fecha, StringFormat='{}{0:dd/MM/yyyy}'}" 
                                        VerticalOptions="CenterAndExpand"/>
                                 <Label Grid.Column="1"
                                        FontAttributes="Bold"
-                                       TextColor="{StaticResource ButtomBackColor}"
+                                       TextColor="{StaticResource FontColor1}"
                                        Text="{Binding CuentaNombre}"
                                        VerticalOptions="CenterAndExpand"/>
                                 <Label Grid.Column="2" 
-                                       TextColor="{StaticResource FontColor1}"
-                                       Text="{Binding Credito, StringFormat=' {0:C0}'}}"
+                                       TextColor="{StaticResource ButtomBackColor}"
+                                       Text="{Binding Credito, StringFormat=' {0:N0}'}}"
                                        VerticalOptions="CenterAndExpand"/>
                                 <Label Grid.Column="3" 
-                                       TextColor="{StaticResource FontColor1}"
-                                       Text="{Binding Debito, StringFormat=' {0:C0}'}}"
+                                       TextColor="{StaticResource ButtomFontColor1}"
+                                       Text="{Binding Debito, StringFormat=' {0:N0}'}}"
                                        VerticalOptions="CenterAndExpand"/>
 
                             </Grid>

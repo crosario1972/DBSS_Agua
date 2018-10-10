@@ -23,17 +23,29 @@ namespace DBSS_Agua.API.Controllers
             return db.CuentasPorPagars;
         }
 
-        // GET: api/CuentasPorPagar/5
-        [ResponseType(typeof(CuentasPorPagar))]
-        public async Task<IHttpActionResult> GetCuentasPorPagar(int id)
-        {
-            CuentasPorPagar cuentasPorPagar = await db.CuentasPorPagars.FindAsync(id);
-            if (cuentasPorPagar == null)
-            {
-                return NotFound();
-            }
+        //// GET: api/CuentasPorPagar/5
+        //[ResponseType(typeof(CuentasPorPagar))]
+        //public async Task<IHttpActionResult> GetCuentasPorPagar(int id)
+        //{
+        //    CuentasPorPagar cuentasPorPagar = await db.CuentasPorPagars.FindAsync(id);
+        //    if (cuentasPorPagar == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(cuentasPorPagar);
+        //    return Ok(cuentasPorPagar);
+        //}
+
+        public IQueryable<CuentasPorPagar> GetCuentasPorPagar(int id)
+        {
+            if (id > 0)
+            {
+                return db.CuentasPorPagars.Where(c => c.SuplidorID == id);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         // PUT: api/CuentasPorPagar/5

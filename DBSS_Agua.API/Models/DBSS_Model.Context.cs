@@ -29,5 +29,6 @@ namespace DBSS_Agua.API.Models
         public virtual DbSet<Cliente> Clientes { get; set; }
         public virtual DbSet<CuentasPorPagar> CuentasPorPagars { get; set; }
         public virtual DbSet<DiarioGeneral> DiarioGenerals { get; set; }
+        public virtual DbSet<Suplidore> Suplidores { get; set; }
     }
 }

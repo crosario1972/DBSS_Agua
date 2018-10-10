@@ -9,6 +9,7 @@
         <EntityTypeShape EntityType="DB_AGUA_DEMOModel.Cliente" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="DB_AGUA_DEMOModel.CuentasPorPagar" Width="1.5" PointX="0.75" PointY="5.75" />
         <EntityTypeShape EntityType="DB_AGUA_DEMOModel.DiarioGeneral" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="DB_AGUA_DEMOModel.Suplidore" Width="1.5" PointX="5.375" PointY="6.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

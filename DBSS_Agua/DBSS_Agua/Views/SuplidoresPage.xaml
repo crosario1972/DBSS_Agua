@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DBSS_Agua.Views.SuplidoresPage"
+             Title="Cuentas por Pagar"
+             BackgroundColor="{StaticResource BackgroundColor}"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="98*" />
+        </Grid.RowDefinitions>
+
+        <StackLayout BindingContext="{Binding Suplidores}"
+            Grid.Row="0" 
+            Orientation="Vertical" 
+            Padding="5,5,5,0">
+            <StackLayout Padding="0"
+                     BackgroundColor="{StaticResource FontColor2}">
+                <StackLayout x:Name="HeaderStackLayout" Orientation="Horizontal" BackgroundColor="{StaticResource FontColor2}">
+                    <Label Text="Nombre" WidthRequest="275" TextColor="{StaticResource AccentColor2}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <ListView
+                BackgroundColor="{StaticResource BackgroundColor}"
+                HasUnevenRows="True"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                ItemsSource="{Binding Suplidores}"
+                SeparatorVisibility="Default"
+                SeparatorColor="{StaticResource FontColor2}"
+                RefreshCommand="{Binding RefreshCommand, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SuplidorDetailCommand}"/>
+                                </Grid.GestureRecognizers>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40">
+                                    </RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label 
+                                    Grid.Column="0"
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource FontColor1}"
+                                    Text="{Binding Nombre}"
+                                    VerticalOptions="CenterAndExpand">
+                                </Label>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </StackLayout>
+
+    </Grid>
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_NuevoRegistroTrans.png" Command="{Binding NewSuplidorCommand}"/>
+    </ContentPage.ToolbarItems>-->
+</ContentPage>

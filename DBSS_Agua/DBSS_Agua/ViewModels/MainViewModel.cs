@@ -26,6 +26,11 @@ namespace DBSS_Agua.ViewModels
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
         public string Nombre { get; internal set; }
         public List<DiarioGeneral> DiarioGeneralList { get; internal set; }
+        public List<Suplidore> SuplidorList { get; internal set; }
+
+        public SuplidoresViewModel Suplidores { get; internal set; }
+        public List<CuentasPorPagar> CxPList { get; internal set; }
+        public CuentasPorPagarViewModel CuentaPorPagar { get; internal set; }
 
         public MainViewModel()
         {
@@ -63,7 +68,7 @@ namespace DBSS_Agua.ViewModels
         {
             Menu.Add(new MenuItemViewModel()
             {
-                Icon = "ic_Empresa.png",
+                Icon = "ic_IngresosEgresos.png",
                 Title = "Ingreso - Egresos",
                 PageName = "DiarioGeneralPage",
             });
@@ -72,7 +77,7 @@ namespace DBSS_Agua.ViewModels
             {
                 Icon = "ic_CxP.png",
                 Title = "Cuentas x Pagar",
-                PageName = "CuentasPorPagarPage",
+                PageName = "SuplidoresPage",
             });
 
             Menu.Add(new MenuItemViewModel()
@@ -82,42 +87,6 @@ namespace DBSS_Agua.ViewModels
                 PageName = "AcercaPage",
             });
 
-
-
-            //Menu.Add(new MenuItemViewModel()
-            //{
-            //    Icon = "ic_Suplidores.png",
-            //    Title = "Suplidores",
-            //    PageName = "SuplidoresPage",
-            //});
-
-            //Menu.Add(new MenuItemViewModel()
-            //{
-            //    Icon = "ic_EmployeeColor.png",
-            //    Title = "Empleados",
-            //    PageName = "EmpleadosPage",
-            //});
-
-            //Menu.Add(new MenuItemViewModel()
-            //{
-            //    Icon = "ic_Usuarios.png",
-            //    Title = "Usuarios",
-            //    PageName = "UsuariosPage",
-            //});
-
-            //Menu.Add(new MenuItemViewModel()
-            //{
-            //    Icon = "ic_Empresa.png",
-            //    Title = "Empresa",
-            //    PageName = "EmpresaPage",
-            //});
-
-            //Menu.Add(new MenuItemViewModel()
-            //{
-            //    Icon = "ic_logoutColor.png",
-            //    Title = "Cerrar sesión",
-            //    PageName = "LogoutPage",
-            //});
         }
         #endregion
 
