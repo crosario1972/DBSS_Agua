@@ -58,9 +58,12 @@ namespace DBSS_Agua.ViewModels
             // "Rev.3.5.1.0 - 12-MAR-2018" - Production release.
             // Formularios afectados: 
             //-------------------------------------------------------------------------------------------------------------------------------------------------
+            // "Rev.3.5.1.1 - 10-OCT-2018" - Correccion de falta ortografica.
+            // Formularios afectados: ClientesEnSuspencionPage
+            //-------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-            this.Revision = "Rev.3.5.1.0 - 10-OCT-2018";
+            this.Revision = "Rev.3.5.1.1 - 10-OCT-2018";
 
         }
 

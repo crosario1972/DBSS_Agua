@@ -5,7 +5,7 @@
              xmlns:i18n="clr-namespace:DBSS_Agua.Helpers"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="Usuarios en suspencion">
+             Title="Usuarios en suspensión">
     <ContentPage.Content>
         <StackLayout 
             BindingContext="{Binding ClientesSuspension}"
