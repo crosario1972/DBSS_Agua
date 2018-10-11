@@ -31,6 +31,7 @@ namespace DBSS_Agua.ViewModels
         public SuplidoresViewModel Suplidores { get; internal set; }
         public List<CuentasPorPagar> CxPList { get; internal set; }
         public CuentasPorPagarViewModel CuentaPorPagar { get; internal set; }
+        public ClientesEnSuspensionViewModel ClientesSuspension { get; set; }
 
         public MainViewModel()
         {
@@ -78,6 +79,13 @@ namespace DBSS_Agua.ViewModels
                 Icon = "ic_CxP.png",
                 Title = "Cuentas x Pagar",
                 PageName = "SuplidoresPage",
+            });
+
+            Menu.Add(new MenuItemViewModel()
+            {
+                Icon = "ic_Corte.png",
+                Title = "Usuarios en Suspensión",
+                PageName = "ClientesEnSuspencionPage",
             });
 
             Menu.Add(new MenuItemViewModel()

@@ -134,9 +134,6 @@ namespace DBSS_Agua.ViewModels
                 return;
             }
 
-            //this.MyClientes = (List<Clientes>)response.Result;
-
-            //this.IsRefreshing = false;
 
             MainViewModel.GetInstance().CxCList = (List<CuentasPorCobrar>)response.Result;
             this.CuentaPorCobar = new ObservableCollection<CuentasPorCobrarItemViewModel>(this.ToCxCItemViewModel());

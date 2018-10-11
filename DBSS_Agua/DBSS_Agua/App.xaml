@@ -18,7 +18,7 @@
             <x:String x:Key="UrlDiarioController">/DiarioGeneral</x:String>
             <x:String x:Key="UrlSuplidoresController">/Suplidores</x:String>
             <x:String x:Key="UrlCxpController">/CuentasPorPagar</x:String>
-
+            <x:String x:Key="UrlClientesEnSuspensionController">/Clientes/custom</x:String>
 
 
 
