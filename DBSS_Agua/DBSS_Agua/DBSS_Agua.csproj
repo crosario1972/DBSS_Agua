@@ -28,6 +28,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Update="Views\ClientesEnSuspensionPage.xaml.cs">
+      <DependentUpon>ClientesEnSuspensionPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -38,7 +41,7 @@
     <EmbeddedResource Update="Views\AcercaPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ClientesEnSuspencionPage.xaml">
+    <EmbeddedResource Update="Views\ClientesEnSuspensionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CuentasPorPagarPage.xaml">

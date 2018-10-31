@@ -52,9 +52,9 @@
                     //await App.Navigator.PushAsync(new PickerMVVM());
                     //Logout();
                     break;
-                case "ClientesEnSuspencionPage":
+                case "ClientesEnSuspensionPage":
                     MainViewModel.GetInstance().ClientesSuspension = new ClientesEnSuspensionViewModel();
-                    await App.Navigator.PushAsync(new ClientesEnSuspencionPage());
+                    await App.Navigator.PushAsync(new ClientesEnSuspensionPage());
                     break;
                 default:
                     break;

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DBSS_Agua.Views.ClientesEnSuspencionPage"
+             x:Class="DBSS_Agua.Views.ClientesEnSuspensionPage"
              xmlns:i18n="clr-namespace:DBSS_Agua.Helpers"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
@@ -10,16 +10,17 @@
         <StackLayout 
             BindingContext="{Binding ClientesSuspension}"
             Padding="10">
-            <SearchBar
+            <Frame 
+                BackgroundColor="{StaticResource ButtomDeleteBorderColor}"
+                CornerRadius="10"
+                Padding="5">
+                <SearchBar
                     HeightRequest="50"
                     Text="{Binding Filter, Mode=TwoWay}"
                     Placeholder="Buscar..."
                     SearchCommand="{Binding SearchCommand}">
-            </SearchBar>
-            <BoxView
-                HeightRequest="3"
-                Color="{StaticResource AccentColor1}">
-            </BoxView>
+                </SearchBar>
+            </Frame>
             <ListView 
                 HasUnevenRows="True"
                 IsPullToRefreshEnabled="True"
@@ -52,8 +53,8 @@
                                         Grid.Column="0"
                                         Source="{Binding ImageFullPath}"
                                         Aspect="AspectFill"
-                                        WidthRequest="100"
-                                        HeightRequest="100">
+                                        WidthRequest="75"
+                                        HeightRequest="75">
                                     </controls:CircleImage>
 
                                     <Grid Grid.Column="1">
@@ -65,72 +66,53 @@
                                             <RowDefinition Height="1*"/>
                                             <RowDefinition Height="*"/>
                                             <RowDefinition Height="*"/>
-                                            <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
                                         <Label
-                                        Grid.Column="0"
-                                        Grid.Row="0"
-                                        Grid.ColumnSpan="2"
-                                        FontAttributes="Bold"
-                                        TextColor="DarkBlue"
-                                        FontSize="Default"
-                                        Text="{Binding NombreInquilino}"
-                                        VerticalOptions="CenterAndExpand"
-                                        HorizontalOptions="CenterAndExpand">
+                                            Grid.Column="0"
+                                            Grid.Row="0"
+                                            Grid.ColumnSpan="2"
+                                            FontAttributes="Bold"
+                                            TextColor="DarkBlue"
+                                            FontSize="Default"
+                                            Text="{Binding NombreInquilino}"
+                                            VerticalOptions="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand">
                                         </Label>
                                         <Label 
-                                        Grid.Row="1"
-                                        Grid.Column="0"
-                                        FontAttributes="Bold"
-                                        TextColor="Black"
-                                        Text="Suspendido :"
-                                        VerticalOptions="Start"
-                                        HorizontalOptions="Start">
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            FontAttributes="Bold"
+                                            TextColor="Black"
+                                            Text="Suspendido :"
+                                            VerticalOptions="Start"
+                                            HorizontalOptions="Start">
                                         </Label>
                                         <Label 
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        FontAttributes="Bold"
-                                        TextColor="Blue"
-                                        Text="{Binding Suspendido}"
-                                        VerticalOptions="Start"
-                                        HorizontalOptions="Start">
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontAttributes="Bold"
+                                            TextColor="Blue"
+                                            Text="{Binding Suspendido}"
+                                            VerticalOptions="Start"
+                                            HorizontalOptions="Start">
                                         </Label>
                                         <Label 
-                                        Grid.Row="2"
-                                        Grid.Column="0"
-                                        FontAttributes="Bold"
-                                        TextColor="Black"
-                                        Text="Cuota :"
-                                        VerticalOptions="Start"
-                                        HorizontalOptions="Start">
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            FontAttributes="Bold"
+                                            TextColor="Black"
+                                            Text="Cuota :"
+                                            VerticalOptions="Start"
+                                            HorizontalOptions="Start">
                                         </Label>
                                         <Label 
-                                        Grid.Row="2"
-                                        Grid.Column="1"
-                                        FontAttributes="Bold"
-                                        TextColor="Blue"
-                                        Text="{Binding MontoMensual, StringFormat=' {0:C2}'}"
-                                        VerticalOptions="Start"
-                                        HorizontalOptions="Start">
-                                        </Label>
-                                        <Label 
-                                        Grid.Row="3"
-                                        Grid.Column="0"
-                                        FontAttributes="Bold"
-                                        TextColor="Black"
-                                        Text="Casa #:"
-                                        VerticalOptions="Start"
-                                        HorizontalOptions="Start">
-                                        </Label>
-                                        <Label 
-                                        Grid.Row="3"
-                                        Grid.Column="1"
-                                        FontAttributes="Bold"
-                                        TextColor="Blue"
-                                        Text="{Binding Direccion}"
-                                        VerticalOptions="Start"
-                                        HorizontalOptions="Start">
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            FontAttributes="Bold"
+                                            TextColor="Blue"
+                                            Text="{Binding MontoMensual, StringFormat=' {0:C2}'}"
+                                            VerticalOptions="Start"
+                                            HorizontalOptions="Start">
                                         </Label>
                                     </Grid>
 

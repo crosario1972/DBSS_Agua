@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace DBSS_Agua.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ClientesEnSuspencionPage : ContentPage
+    public partial class ClientesEnSuspensionPage : ContentPage
     {
-        public ClientesEnSuspencionPage()
+        public ClientesEnSuspensionPage()
         {
             InitializeComponent();
         }

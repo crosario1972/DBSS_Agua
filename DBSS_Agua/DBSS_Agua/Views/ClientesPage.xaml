@@ -10,16 +10,17 @@
         <StackLayout 
             BindingContext="{Binding Clientes}"
             Padding="10">
-            <SearchBar
+            <Frame 
+                BackgroundColor="{StaticResource ButtomUpdateBorderColor}"
+                CornerRadius="10"
+                Padding="5">
+                <SearchBar
                     HeightRequest="50"
                     Text="{Binding Filter, Mode=TwoWay}"
                     Placeholder="Buscar..."
                     SearchCommand="{Binding SearchCommand}">
-            </SearchBar>
-            <BoxView
-                HeightRequest="3"
-                Color="{StaticResource AccentColor1}">
-            </BoxView>
+                </SearchBar>
+            </Frame>
             <ListView 
                 HasUnevenRows="True"
                 IsPullToRefreshEnabled="True"
@@ -52,8 +53,8 @@
                                         Grid.Column="0"
                                         Source="{Binding ImageFullPath}"
                                         Aspect="AspectFill"
-                                        WidthRequest="100"
-                                        HeightRequest="100">
+                                        WidthRequest="75"
+                                        HeightRequest="75">
                                     </controls:CircleImage>
 
                                     <Grid Grid.Column="1">
@@ -65,8 +66,7 @@
                                         <RowDefinition Height="1*"/>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
+                                        </Grid.RowDefinitions>
                                     <Label
                                         Grid.Column="0"
                                         Grid.Row="0"
@@ -105,7 +105,7 @@
                                         VerticalOptions="Start"
                                         HorizontalOptions="Start">
                                     </Label>
-                                    <Label 
+                                        <Label 
                                         Grid.Row="2"
                                         Grid.Column="1"
                                         FontAttributes="Bold"
@@ -113,26 +113,8 @@
                                         Text="{Binding MontoMensual, StringFormat=' {0:C2}'}"
                                         VerticalOptions="Start"
                                         HorizontalOptions="Start">
-                                    </Label>
-                                    <Label 
-                                        Grid.Row="3"
-                                        Grid.Column="0"
-                                        FontAttributes="Bold"
-                                        TextColor="Black"
-                                        Text="Casa #:"
-                                        VerticalOptions="Start"
-                                        HorizontalOptions="Start">
-                                    </Label>
-                                    <Label 
-                                        Grid.Row="3"
-                                        Grid.Column="1"
-                                        FontAttributes="Bold"
-                                        TextColor="Blue"
-                                        Text="{Binding Direccion}"
-                                        VerticalOptions="Start"
-                                        HorizontalOptions="Start">
-                                    </Label>
-                                </Grid>
+                                        </Label>
+                                    </Grid>
 
                             </Grid>
                             </Frame>

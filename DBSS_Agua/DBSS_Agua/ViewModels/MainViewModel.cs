@@ -59,11 +59,17 @@ namespace DBSS_Agua.ViewModels
             // Formularios afectados: 
             //-------------------------------------------------------------------------------------------------------------------------------------------------
             // "Rev.3.5.1.1 - 10-OCT-2018" - Correccion de falta ortografica.
-            // Formularios afectados: ClientesEnSuspencionPage
+            // Formularios afectados: ClientesEnSuspensionPage
+            //-------------------------------------------------------------------------------------------------------------------------------------------------
+            // "Rev.3.5.1.2 - 17-OCT-2018" - Reduccion del tamaño del ListView.
+            // Formularios afectados: ClientesPage
+            //-------------------------------------------------------------------------------------------------------------------------------------------------
+            // "Rev.3.5.1.3 - 22-OCT-2018" - Reduccion del tamaño del ListView de clientes en suspension.
+            // Formularios afectados: ClientesEnSuspensionPage
             //-------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-            this.Revision = "Rev.3.5.1.1 - 10-OCT-2018";
+            this.Revision = "Rev.3.5.1.3 - 22-OCT-2018";
 
         }
 
@@ -73,14 +79,14 @@ namespace DBSS_Agua.ViewModels
             Menu.Add(new MenuItemViewModel()
             {
                 Icon = "ic_IngresosEgresos.png",
-                Title = "Ingreso - Egresos",
+                Title = "Ingresos - Egresos",
                 PageName = "DiarioGeneralPage",
             });
 
             Menu.Add(new MenuItemViewModel()
             {
                 Icon = "ic_CxP.png",
-                Title = "Cuentas x Pagar",
+                Title = "Cuentas por Pagar",
                 PageName = "SuplidoresPage",
             });
 
@@ -88,7 +94,7 @@ namespace DBSS_Agua.ViewModels
             {
                 Icon = "ic_Corte.png",
                 Title = "Usuarios en Suspensión",
-                PageName = "ClientesEnSuspencionPage",
+                PageName = "ClientesEnSuspensionPage",
             });
 
             Menu.Add(new MenuItemViewModel()
