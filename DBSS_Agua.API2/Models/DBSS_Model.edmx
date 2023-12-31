@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB_AGUA_DEMOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="ClientesID" />
+          </Key>
+          <Property Name="ClientesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegistroActivo" Type="bit" />
+          <Property Name="NombreInquilino" Type="nvarchar" MaxLength="25" />
+          <Property Name="NombrePropietario" Type="nvarchar" MaxLength="25" />
+          <Property Name="CasaPropia" Type="bit" />
+          <Property Name="Cedula" Type="nchar" MaxLength="13" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="255" />
+          <Property Name="TelefonoRecidencial" Type="nvarchar" MaxLength="15" />
+          <Property Name="TelefonoCelular" Type="nvarchar" MaxLength="15" />
+          <Property Name="FechaCreación" Type="datetime" />
+          <Property Name="Comentario" Type="nvarchar" MaxLength="255" />
+          <Property Name="ServicioTipo" Type="nvarchar" MaxLength="10" />
+          <Property Name="UsuarioNombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="ServicioSuspendido" Type="bit" />
+          <Property Name="ServicioSuspendidoFecha" Type="datetime" />
+          <Property Name="MontoMensual" Type="money" />
+          <Property Name="ImagePath" Type="nvarchar(max)" />
+          <Property Name="MontoPendienteMembrecia" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="CuentasPorCobrar">
+          <Key>
+            <PropertyRef Name="CuentasPorCobrarID" />
+          </Key>
+          <Property Name="CuentasPorCobrarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClienteID" Type="int" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="FechaDePago" Type="datetime" />
+          <Property Name="TransaccionReferencia" Type="nvarchar" MaxLength="100" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="255" />
+          <Property Name="Debito" Type="money" />
+          <Property Name="Credito" Type="money" />
+          <Property Name="UsuarioNombre" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="CuentasPorPagar">
+          <Key>
+            <PropertyRef Name="CuentasPorPagarID" />
+          </Key>
+          <Property Name="CuentasPorPagarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SuplidorID" Type="int" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="FechaDePago" Type="datetime" />
+          <Property Name="TransaccionReferencia" Type="nvarchar" MaxLength="100" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="255" />
+          <Property Name="Debito" Type="money" />
+          <Property Name="Credito" Type="money" />
+          <Property Name="UsuarioNombre" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DiarioGeneral">
+          <Key>
+            <PropertyRef Name="DiarioGeneralID" />
+          </Key>
+          <Property Name="DiarioGeneralID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="Referencia" Type="nchar" MaxLength="50" />
+          <Property Name="Descripcion" Type="nchar" MaxLength="150" />
+          <Property Name="CuentaNombre" Type="nchar" MaxLength="50" />
+          <Property Name="Auxiliar" Type="money" />
+          <Property Name="Debito" Type="money" />
+          <Property Name="Credito" Type="money" />
+          <Property Name="Usuario" Type="nchar" MaxLength="50" />
+          <Property Name="RegistroUsado" Type="bit" />
+        </EntityType>
+        <EntityType Name="Suplidores">
+          <Key>
+            <PropertyRef Name="SuplidorID" />
+          </Key>
+          <Property Name="SuplidorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegistroActivo" Type="bit" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="25" />
+          <Property Name="TelefonoRecidencial" Type="nvarchar" MaxLength="15" />
+          <Property Name="TelefonoCelular" Type="nvarchar" MaxLength="15" />
+          <Property Name="Comentario" Type="nvarchar" MaxLength="255" />
+          <Property Name="UsuarioNombre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="DB_AGUA_DEMOModelStoreContainer">
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CuentasPorCobrar" EntityType="Self.CuentasPorCobrar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CuentasPorPagar" EntityType="Self.CuentasPorPagar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiarioGeneral" EntityType="Self.DiarioGeneral" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suplidores" EntityType="Self.Suplidores" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_AGUA_DEMOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CuentasPorCobrar">
+          <Key>
+            <PropertyRef Name="CuentasPorCobrarID" />
+          </Key>
+          <Property Name="CuentasPorCobrarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteID" Type="Int32" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="FechaDePago" Type="DateTime" Precision="3" />
+          <Property Name="TransaccionReferencia" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Debito" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Credito" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="UsuarioNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="DB_AGUA_DEMOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CuentasPorCobrars" EntityType="Self.CuentasPorCobrar" />
+          <EntitySet Name="Clientes" EntityType="DB_AGUA_DEMOModel.Cliente" />
+          <EntitySet Name="CuentasPorPagars" EntityType="DB_AGUA_DEMOModel.CuentasPorPagar" />
+          <EntitySet Name="DiarioGenerals" EntityType="DB_AGUA_DEMOModel.DiarioGeneral" />
+          <EntitySet Name="Suplidores" EntityType="DB_AGUA_DEMOModel.Suplidore" />
+          </EntityContainer>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ClientesID" />
+          </Key>
+          <Property Name="ClientesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegistroActivo" Type="Boolean" />
+          <Property Name="NombreInquilino" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="NombrePropietario" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="CasaPropia" Type="Boolean" />
+          <Property Name="Cedula" Type="String" MaxLength="13" FixedLength="true" Unicode="true" />
+          <Property Name="Direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TelefonoRecidencial" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="TelefonoCelular" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="FechaCreación" Type="DateTime" Precision="3" />
+          <Property Name="Comentario" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ServicioTipo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UsuarioNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ServicioSuspendido" Type="Boolean" />
+          <Property Name="ServicioSuspendidoFecha" Type="DateTime" Precision="3" />
+          <Property Name="MontoMensual" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MontoPendienteMembrecia" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="CuentasPorPagar">
+          <Key>
+            <PropertyRef Name="CuentasPorPagarID" />
+          </Key>
+          <Property Name="CuentasPorPagarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SuplidorID" Type="Int32" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="FechaDePago" Type="DateTime" Precision="3" />
+          <Property Name="TransaccionReferencia" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Debito" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Credito" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="UsuarioNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DiarioGeneral">
+          <Key>
+            <PropertyRef Name="DiarioGeneralID" />
+          </Key>
+          <Property Name="DiarioGeneralID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="Referencia" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <Property Name="CuentaNombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Auxiliar" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Debito" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Credito" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="RegistroUsado" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Suplidore">
+          <Key>
+            <PropertyRef Name="SuplidorID" />
+          </Key>
+          <Property Name="SuplidorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegistroActivo" Type="Boolean" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="TelefonoRecidencial" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="TelefonoCelular" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Comentario" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UsuarioNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_AGUA_DEMOModelStoreContainer" CdmEntityContainer="DB_AGUA_DEMOEntities">
+          <EntitySetMapping Name="CuentasPorCobrars">
+            <EntityTypeMapping TypeName="DB_AGUA_DEMOModel.CuentasPorCobrar">
+              <MappingFragment StoreEntitySet="CuentasPorCobrar">
+                <ScalarProperty Name="CuentasPorCobrarID" ColumnName="CuentasPorCobrarID" />
+                <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaDePago" ColumnName="FechaDePago" />
+                <ScalarProperty Name="TransaccionReferencia" ColumnName="TransaccionReferencia" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Debito" ColumnName="Debito" />
+                <ScalarProperty Name="Credito" ColumnName="Credito" />
+                <ScalarProperty Name="UsuarioNombre" ColumnName="UsuarioNombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="DB_AGUA_DEMOModel.Cliente">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="MontoPendienteMembrecia" ColumnName="MontoPendienteMembrecia" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="MontoMensual" ColumnName="MontoMensual" />
+                <ScalarProperty Name="ServicioSuspendidoFecha" ColumnName="ServicioSuspendidoFecha" />
+                <ScalarProperty Name="ServicioSuspendido" ColumnName="ServicioSuspendido" />
+                <ScalarProperty Name="UsuarioNombre" ColumnName="UsuarioNombre" />
+                <ScalarProperty Name="ServicioTipo" ColumnName="ServicioTipo" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="FechaCreación" ColumnName="FechaCreación" />
+                <ScalarProperty Name="TelefonoCelular" ColumnName="TelefonoCelular" />
+                <ScalarProperty Name="TelefonoRecidencial" ColumnName="TelefonoRecidencial" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="CasaPropia" ColumnName="CasaPropia" />
+                <ScalarProperty Name="NombrePropietario" ColumnName="NombrePropietario" />
+                <ScalarProperty Name="NombreInquilino" ColumnName="NombreInquilino" />
+                <ScalarProperty Name="RegistroActivo" ColumnName="RegistroActivo" />
+                <ScalarProperty Name="ClientesID" ColumnName="ClientesID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CuentasPorPagars">
+            <EntityTypeMapping TypeName="DB_AGUA_DEMOModel.CuentasPorPagar">
+              <MappingFragment StoreEntitySet="CuentasPorPagar">
+                <ScalarProperty Name="UsuarioNombre" ColumnName="UsuarioNombre" />
+                <ScalarProperty Name="Credito" ColumnName="Credito" />
+                <ScalarProperty Name="Debito" ColumnName="Debito" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="TransaccionReferencia" ColumnName="TransaccionReferencia" />
+                <ScalarProperty Name="FechaDePago" ColumnName="FechaDePago" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="SuplidorID" ColumnName="SuplidorID" />
+                <ScalarProperty Name="CuentasPorPagarID" ColumnName="CuentasPorPagarID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiarioGenerals">
+            <EntityTypeMapping TypeName="DB_AGUA_DEMOModel.DiarioGeneral">
+              <MappingFragment StoreEntitySet="DiarioGeneral">
+                <ScalarProperty Name="RegistroUsado" ColumnName="RegistroUsado" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Credito" ColumnName="Credito" />
+                <ScalarProperty Name="Debito" ColumnName="Debito" />
+                <ScalarProperty Name="Auxiliar" ColumnName="Auxiliar" />
+                <ScalarProperty Name="CuentaNombre" ColumnName="CuentaNombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="DiarioGeneralID" ColumnName="DiarioGeneralID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suplidores">
+            <EntityTypeMapping TypeName="DB_AGUA_DEMOModel.Suplidore">
+              <MappingFragment StoreEntitySet="Suplidores">
+                <ScalarProperty Name="UsuarioNombre" ColumnName="UsuarioNombre" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="TelefonoCelular" ColumnName="TelefonoCelular" />
+                <ScalarProperty Name="TelefonoRecidencial" ColumnName="TelefonoRecidencial" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RegistroActivo" ColumnName="RegistroActivo" />
+                <ScalarProperty Name="SuplidorID" ColumnName="SuplidorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
